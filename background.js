@@ -1,19 +1,19 @@
 const bookmarkedUrlsArray = []
 
-var recursionrecursionCounterer = 0
+let recursionCounter = 0
 
 function process_bookmark (bookmarks) {
   recursionCounter++
   
-  for (var i=0; i < bookmarks.length; i++) {
+  for (let i=0; i < bookmarks.length; i++) {
     
-    var bookmark = bookmarks[i];
+    let bookmark = bookmarks[i];
     if (bookmark.url) {
       bookmarkedUrlsArray.push(bookmark.url)
     }
 
     if (bookmark.children) {
-      process_bookmark(bookmark.children);
+      process_bookmark(bookmark.children)
     }
   }
 
