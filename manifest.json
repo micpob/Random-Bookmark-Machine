@@ -9,6 +9,7 @@
     "persistent": false
   },
   "permissions": ["storage", "bookmarks"],
+  "options_page": "options.html",
   "browser_action": {
     "default_icon": {
       "16": "Res/Icons/icon16.png",

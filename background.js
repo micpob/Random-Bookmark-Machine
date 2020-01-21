@@ -1,14 +1,18 @@
 const bookmarkedUrlsArray = []
 
+let excludedFolders = []
+
 let recursionCounter = 0
 
 function process_bookmark (bookmarks) {
+
   recursionCounter++
   
-  for (let i=0; i < bookmarks.length; i++) {
+  for (let i=0; i < bookmarks.length; i++) {    
+    let bookmark = bookmarks[i]
     
-    let bookmark = bookmarks[i];
     if (bookmark.url) {
+      if (!excludedFolders.includes(bookmark.parentId))
       bookmarkedUrlsArray.push(bookmark.url)
     }
 
@@ -26,12 +30,21 @@ function process_bookmark (bookmarks) {
 
 function openBookmark () {
   const bookmarkedUrlsArrayLength = bookmarkedUrlsArray.length
-  const randomIndex = Math.floor(Math.random() * bookmarkedUrlsArrayLength) + 1
+  const randomIndex = Math.floor(Math.random() * bookmarkedUrlsArrayLength)
   const randomUrl = bookmarkedUrlsArray[randomIndex]
+  /* console.log('bookmarkedUrlsArrayLength: ', bookmarkedUrlsArrayLength)
+  console.log('randomIndex: ', randomIndex)
+  console.log('randomUrl: ', randomUrl) */
   window.open(randomUrl)
   bookmarkedUrlsArray.length = 0
 }
 
 chrome.browserAction.onClicked.addListener( () => {
-  chrome.bookmarks.getTree( process_bookmark )
+  chrome.storage.sync.get(['excludedFolders'], (folderList) => {
+    if (folderList.excludedFolders) {
+      excludedFolders = folderList.excludedFolders
+    }
+    chrome.bookmarks.getTree( process_bookmark )
+  }) 
+  
 })
