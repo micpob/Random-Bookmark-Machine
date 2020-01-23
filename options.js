@@ -1,5 +1,6 @@
 const checkAllBox = document.getElementById('check_all')
 const checkAllLabelText = document.getElementById('check_all_label_text')
+let recursionCounter = 0
 
 checkAllBox.addEventListener('change', (e) => {
     let checkboxes = document.getElementsByClassName('folderName')  
@@ -66,6 +67,7 @@ function addElementsToList (bookmark) {
   chrome.storage.sync.get(['excludedFolders'], (folderList) => {
    if (folderList.excludedFolders && folderList.excludedFolders.includes(bookmark.id)) { 
      checkbox.checked = false
+     checkbox.parentElement.style.opacity = '0.5'
      checkAllBox.checked = false
      checkAllLabelText.innerText = 'Select All'
     }
@@ -81,7 +83,7 @@ function addElementsToList (bookmark) {
 
   document.getElementById('folders_list').appendChild(label)
   document.getElementById('folders_list').appendChild(document.createElement('br'))    
-  document.getElementById('folders_list').appendChild(document.createElement('br')) 
+  document.getElementById('folders_list').appendChild(document.createElement('br'))
 }
 
 chrome.bookmarks.getTree( process_bookmark )
