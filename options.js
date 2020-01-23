@@ -77,8 +77,7 @@ function addElementsToList (bookmark) {
   folderIcon.src = 'Res/Icons/folder4b.svg'
   label.appendChild(checkbox)
   label.appendChild(folderIcon)
-  label.appendChild(document.createTextNode(bookmark.title))
-  
+  label.appendChild(document.createTextNode(bookmark.title))  
 
   document.getElementById('folders_list').appendChild(label)
   document.getElementById('folders_list').appendChild(document.createElement('br'))    

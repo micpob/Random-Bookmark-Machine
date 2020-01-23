@@ -35,7 +35,12 @@ function openBookmark () {
   /* console.log('bookmarkedUrlsArrayLength: ', bookmarkedUrlsArrayLength)
   console.log('randomIndex: ', randomIndex)
   console.log('randomUrl: ', randomUrl) */
-  window.open(randomUrl)
+  if (randomUrl) {
+    window.open(randomUrl)
+  } else {
+    alert('Plase select at least one bookmarks folder from the list in the Options page')
+  }
+  
   bookmarkedUrlsArray.length = 0
 }
 
