@@ -1,4 +1,5 @@
 const checkAllBox = document.getElementById('check_all')
+const checkAllLabelText = document.getElementById('check_all_label_text')
 
 checkAllBox.addEventListener('change', (e) => {
     let checkboxes = document.getElementsByClassName('folderName')  
@@ -6,11 +7,14 @@ checkAllBox.addEventListener('change', (e) => {
       for (let i = 0; i < checkboxes.length; i++) {
         checkboxes[i].checked = true
       }
+      checkAllLabelText.innerText = 'Deselect All'
     } else {
       for (let i = 0; i < checkboxes.length; i++) {
         checkboxes[i].checked = false
       }
+      checkAllLabelText.innerText = 'Select All'
     }
+    modifyFoldersList()
   }
 )
 
@@ -30,10 +34,12 @@ function process_bookmark (bookmarks) {
 
 function modifyFoldersList () {
   let checkboxes = document.getElementsByClassName('folderName')
-  checkboxes = Array.from(checkboxes) 
+  checkboxes = Array.from(checkboxes)
+  const checkboxesChecked = checkboxes.filter(checkbox => checkbox.checked === true)
+  checkboxesChecked.map(checkbox => { checkbox.parentElement.style.opacity = '1' })
   const checkboxesUnchecked = checkboxes.filter(checkbox => checkbox.checked === false)
-  checkboxesUnchecked.length > 0 ? checkAllBox.checked = false : checkAllBox.checked = true
-  const folderToExcludeIds = checkboxesUnchecked.map(checkbox => { return checkbox.value })
+  checkboxesUnchecked.length > 0 ? (checkAllBox.checked = false, checkAllLabelText.innerText = 'Select All') : (checkAllBox.checked = true, checkAllLabelText.innerText = 'Deselect All')
+  const folderToExcludeIds = checkboxesUnchecked.map(checkbox => { checkbox.parentElement.style.opacity = '0.5'; return checkbox.value })
   chrome.storage.sync.set({ excludedFolders: folderToExcludeIds })
 }
 
@@ -54,13 +60,14 @@ function addElementsToList (bookmark) {
     checkbox.style.marginLeft = folderMargin
   }
 
-  checkbox.addEventListener('change', (event) => {
+  checkbox.addEventListener('change', (e) => {
     modifyFoldersList()
   })
   chrome.storage.sync.get(['excludedFolders'], (folderList) => {
    if (folderList.excludedFolders && folderList.excludedFolders.includes(bookmark.id)) { 
      checkbox.checked = false
      checkAllBox.checked = false
+     checkAllLabelText.innerText = 'Select All'
     }
   })  
 
@@ -68,15 +75,12 @@ function addElementsToList (bookmark) {
   label.htmlFor = bookmark.id
   let folderIcon = document.createElement('img')
   folderIcon.src = 'Res/Icons/folder4b.svg'
-  folderIcon.style.height = '20px'
-  //folderIcon.style.width = folderIcon.style.height
   label.appendChild(checkbox)
   label.appendChild(folderIcon)
   label.appendChild(document.createTextNode(bookmark.title))
   
 
   document.getElementById('folders_list').appendChild(label)
-  //document.getElementById('folders_list').appendChild(checkbox)  
   document.getElementById('folders_list').appendChild(document.createElement('br'))    
   document.getElementById('folders_list').appendChild(document.createElement('br')) 
 }

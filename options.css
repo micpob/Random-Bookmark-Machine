@@ -8,4 +8,9 @@ label:hover {
 
 img {
   padding: 0 5px;
+  height: 17px;
+}
+
+input[type='checkbox'] { 
+  visibility: hidden;  
 }
