@@ -65,12 +65,20 @@ function addElementsToList (bookmark) {
   })  
 
   let label = document.createElement('label')
-  label.htmlFor = bookmark.title
+  label.htmlFor = bookmark.id
+  let folderIcon = document.createElement('img')
+  folderIcon.src = 'Res/Icons/folder4b.svg'
+  folderIcon.style.height = '20px'
+  //folderIcon.style.width = folderIcon.style.height
+  label.appendChild(checkbox)
+  label.appendChild(folderIcon)
   label.appendChild(document.createTextNode(bookmark.title))
+  
 
-  document.getElementById('folders_list').appendChild(checkbox)
   document.getElementById('folders_list').appendChild(label)
+  //document.getElementById('folders_list').appendChild(checkbox)  
   document.getElementById('folders_list').appendChild(document.createElement('br'))    
+  document.getElementById('folders_list').appendChild(document.createElement('br')) 
 }
 
 chrome.bookmarks.getTree( process_bookmark )

@@ -1,0 +1,11 @@
+label {
+  
+}
+
+label:hover {
+  cursor: pointer;
+}
+
+img {
+  padding: 0 5px;
+}
