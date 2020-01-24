@@ -1,5 +1,16 @@
-label {
-  
+#check_all_label {
+  display: block;
+  width: max-content;
+  padding: 20px 0;
+}
+
+#folders_list {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+label {  
+  margin: 10px 0;
 }
 
 label:hover {
@@ -12,5 +23,8 @@ img {
 }
 
 input[type='checkbox'] { 
-  visibility: hidden;  
+  visibility: hidden; 
 }
+
+
+

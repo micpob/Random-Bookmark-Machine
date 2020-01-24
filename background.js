@@ -32,9 +32,6 @@ function openBookmark () {
   const bookmarkedUrlsArrayLength = bookmarkedUrlsArray.length
   const randomIndex = Math.floor(Math.random() * bookmarkedUrlsArrayLength)
   const randomUrl = bookmarkedUrlsArray[randomIndex]
-  /* console.log('bookmarkedUrlsArrayLength: ', bookmarkedUrlsArrayLength)
-  console.log('randomIndex: ', randomIndex)
-  console.log('randomUrl: ', randomUrl) */
   if (randomUrl) {
     window.open(randomUrl)
   } else {

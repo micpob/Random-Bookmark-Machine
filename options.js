@@ -1,6 +1,5 @@
-const checkAllBox = document.getElementById('check_all')
+const checkAllBox = document.getElementById('check_all_checkbox')
 const checkAllLabelText = document.getElementById('check_all_label_text')
-let recursionCounter = 0
 
 checkAllBox.addEventListener('change', (e) => {
     let checkboxes = document.getElementsByClassName('folderName')  
@@ -50,20 +49,10 @@ function addElementsToList (bookmark) {
   checkbox.checked = true
   checkbox.name = bookmark.title
   checkbox.value = bookmark.id
-  checkbox.id = bookmark.id
+  checkbox.id = 'checkbox' + bookmark.id
   checkbox.classList.add('folderName')
+  checkbox.addEventListener('change', modifyFoldersList)
 
-  checkbox.setAttribute('data-parentfolder', bookmark.parentId)
-
-  if (bookmark.parentId != 0) {
-    const parentFolder = document.getElementById(bookmark.parentId)
-    const folderMargin = parentFolder.style.marginLeft == 0 ? '20px' : parseInt(parentFolder.style.marginLeft) + 20 + 'px'
-    checkbox.style.marginLeft = folderMargin
-  }
-
-  checkbox.addEventListener('change', (e) => {
-    modifyFoldersList()
-  })
   chrome.storage.sync.get(['excludedFolders'], (folderList) => {
    if (folderList.excludedFolders && folderList.excludedFolders.includes(bookmark.id)) { 
      checkbox.checked = false
@@ -74,16 +63,22 @@ function addElementsToList (bookmark) {
   })  
 
   let label = document.createElement('label')
-  label.htmlFor = bookmark.id
+  label.id = bookmark.id
+  label.htmlFor = 'checkbox' + bookmark.id
   let folderIcon = document.createElement('img')
   folderIcon.src = 'Res/Icons/folder4b.svg'
-  label.appendChild(checkbox)
+
+  if (bookmark.parentId != 0) {
+    const parentFolder = document.getElementById(bookmark.parentId)
+    const folderMargin = parentFolder.style.marginLeft == 0 ? '20px' : parseInt(parentFolder.style.marginLeft) + 20 + 'px'
+    label.style.marginLeft = folderMargin
+  }
+  
   label.appendChild(folderIcon)
-  label.appendChild(document.createTextNode(bookmark.title))  
+  label.appendChild(document.createTextNode(bookmark.title))
+  label.appendChild(checkbox)
 
   document.getElementById('folders_list').appendChild(label)
-  document.getElementById('folders_list').appendChild(document.createElement('br'))    
-  document.getElementById('folders_list').appendChild(document.createElement('br'))
 }
 
 chrome.bookmarks.getTree( process_bookmark )
