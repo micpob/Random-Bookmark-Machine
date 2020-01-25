@@ -35,7 +35,7 @@ function openBookmark () {
   if (randomUrl) {
     window.open(randomUrl)
   } else {
-    alert('Plase select at least one bookmarks folder from the list in the Options page')
+    chrome.runtime.openOptionsPage(() => { alert('Plase select at least one folder from the list in the Options page') })    
   }
   
   bookmarkedUrlsArray.length = 0
