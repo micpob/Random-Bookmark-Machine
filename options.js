@@ -1,6 +1,7 @@
 const checkAllBox = document.getElementById('check_all_checkbox')
 const checkAllLabelText = document.getElementById('check_all_label_text')
-
+let selectAllText = 'Select All'
+let deselectAllText = 'Deselect All'
 
 checkAllBox.addEventListener('change', (e) => {
     let checkboxes = document.getElementsByClassName('folderName')  
@@ -8,7 +9,7 @@ checkAllBox.addEventListener('change', (e) => {
       for (let i = 0; i < checkboxes.length; i++) {
         checkboxes[i].checked = true
       }
-      checkAllLabelText.innerText = 'Deselect All'
+      checkAllLabelText.innerText = deselectAllText
     } else {
       for (let i = 0; i < checkboxes.length; i++) {
         checkboxes[i].checked = false
@@ -39,7 +40,7 @@ function modifyFoldersList () {
   const checkboxesChecked = checkboxes.filter(checkbox => checkbox.checked === true)
   checkboxesChecked.map(checkbox => { checkbox.parentElement.style.opacity = '1' })
   const checkboxesUnchecked = checkboxes.filter(checkbox => checkbox.checked === false)
-  checkboxesUnchecked.length > 0 ? (checkAllBox.checked = false, checkAllLabelText.innerText = 'Select All') : (checkAllBox.checked = true, checkAllLabelText.innerText = 'Deselect All')
+  checkboxesUnchecked.length > 0 ? (checkAllBox.checked = false, checkAllLabelText.innerText = selectAllText) : (checkAllBox.checked = true, checkAllLabelText.innerText = deselectAllText)
   const folderToExcludeIds = checkboxesUnchecked.map(checkbox => { checkbox.parentElement.style.opacity = '0.5'; return checkbox.value })
   chrome.storage.sync.set({ excludedFolders: folderToExcludeIds })
 }
@@ -59,7 +60,7 @@ function addElementsToList (bookmark) {
      checkbox.checked = false
      checkbox.parentElement.style.opacity = '0.5'
      checkAllBox.checked = false
-     checkAllLabelText.innerText = 'Select All'
+     checkAllLabelText.innerText = selectAllText
     }
   })  
 
@@ -67,7 +68,7 @@ function addElementsToList (bookmark) {
   label.id = bookmark.id
   label.htmlFor = 'checkbox' + bookmark.id
   let folderIcon = document.createElement('img')
-  folderIcon.src = 'Res/Icons/folder4b.svg'
+  folderIcon.src = 'Res/Icons/folder.svg'
 
   if (bookmark.parentId != 0) {
     const parentFolder = document.getElementById(bookmark.parentId)

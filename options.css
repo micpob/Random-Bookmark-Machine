@@ -1,7 +1,11 @@
 #check_all_label {
   display: block;
   width: max-content;
-  padding: 20px 0;
+  padding: 10px;
+  border: 2px solid lightgray;
+  color: white;
+  font-size: large;
+  background-color: rgb(2, 168, 2);
 }
 
 #folders_list {
@@ -22,7 +26,8 @@ img {
   height: 17px;
 }
 
-input[type='checkbox'] { 
+input[type='checkbox'] {
+  display: none;
   visibility: hidden; 
 }
 
