@@ -1,3 +1,12 @@
+#date_range_container {
+  display: flex;
+  margin: 0 0 30px 0;
+}
+
+form#end_date_range {
+  margin-left: 10%;
+}
+
 #check_all_label {
   display: block;
   width: max-content;

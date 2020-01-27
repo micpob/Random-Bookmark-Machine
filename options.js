@@ -1,3 +1,53 @@
+
+  const date = new Date()
+  const currentMonth = date.toLocaleString('default', { month: 'long' })
+  const endMonths = Array.from(document.getElementById('end_month').options)
+  endMonths.map(option => { if (option.value === currentMonth) { option.setAttribute('selected', true) } })
+  const startYearsList = document.getElementById('start_year')
+  const endYearsList = document.getElementById('end_year')
+  const currentYear = date.getFullYear()
+  const yearsList = Array.from({ length: currentYear - 2007 }, (v, i) => currentYear - i)
+
+  for (let i = 0; i < yearsList.length; i++) {
+    endYearsList.options.add(new Option(yearsList[i], yearsList[i]))
+  }
+
+  for(let i = yearsList.length-1; i >= 0; i--) {
+    startYearsList.options.add(new Option(yearsList[i], yearsList[i]))
+  }
+
+chrome.storage.sync.get(['dateRangeObject'], (dates) => {
+  if (dates.dateRangeObject) { 
+    document.getElementById('start_month').value = dates.dateRangeObject.startMonth
+    document.getElementById('start_year').value = dates.dateRangeObject.startYear
+    document.getElementById('end_month').value = dates.dateRangeObject.endMonth
+    document.getElementById('end_year').value = dates.dateRangeObject.endYear
+    } else {
+    const startMonth = document.getElementById('start_month').value
+    const startYear = document.getElementById('start_year').value
+    const endMonth = document.getElementById('end_month').value
+    const endYear = document.getElementById('end_year').value
+    const dateRangeObject = {
+      startMonth, startYear, endMonth, endYear
+    }
+    chrome.storage.sync.set({ dateRangeObject: dateRangeObject })
+    }   
+  }
+)
+
+ Array.from(document.getElementsByTagName('select')).map(select => {
+  select.addEventListener('change', (e) => {
+    const startMonth = document.getElementById('start_month').value
+    const startYear = document.getElementById('start_year').value
+    const endMonth = document.getElementById('end_month').value
+    const endYear = document.getElementById('end_year').value
+    const dateRangeObject = {
+      startMonth, startYear, endMonth, endYear
+    }
+    chrome.storage.sync.set({ dateRangeObject: dateRangeObject })      
+  })
+ })
+
 const checkAllBox = document.getElementById('check_all_checkbox')
 const checkAllLabelText = document.getElementById('check_all_label_text')
 let selectAllText = 'Select All'
