@@ -64,7 +64,7 @@ checkAllBox.addEventListener('change', (e) => {
       for (let i = 0; i < checkboxes.length; i++) {
         checkboxes[i].checked = false
       }
-      checkAllLabelText.innerText = 'Select All'
+      checkAllLabelText.innerText = selectAllText
     }
     modifyFoldersList()
   }
