@@ -1,10 +1,31 @@
-#date_range_container {
-  display: flex;
-  margin: 0 0 30px 0;
+@font-face {
+  font-family: amiga2;
+  src: url(REs/Fonts/amiga4everpro.ttf);
+}
+
+* {
+  font-family: amiga2;
+  font-weight: 300;
+}
+
+body {
+  background-color: #1F54AC;
+  color: white;
 }
 
 #date_range_container {
+  display: flex;
+  margin: 30px 0 40px 0;
 }
+
+#date_range_container button {
+  background-color: #AAAAAA;
+  vertical-align: middle;
+} 
+
+#date_range_container button:hover {
+  cursor: pointer;
+} 
 
 select {
   -webkit-appearance: none;
@@ -46,7 +67,7 @@ label:hover {
 
 img {
   padding: 0 5px;
-  height: 17px;
+  height: 25px;
 }
 
 input[type='checkbox'] {
@@ -54,5 +75,24 @@ input[type='checkbox'] {
   visibility: hidden; 
 }
 
+body::-webkit-scrollbar {
+  width: 2em;
+}
+ 
+body::-webkit-scrollbar-track {
+  background-color: black;
+  border-left: 3px solid white;
+  border-right: 3px solid white;
+}
+ 
+body::-webkit-scrollbar-thumb {
+  background-color: orange;
+  border-left: 3px solid white;
+  border-right: 3px solid white;
+}
 
-
+@media only screen and (max-width: 821px) {
+  #date_range_container button {
+    margin-top: 7px;
+  } 
+}

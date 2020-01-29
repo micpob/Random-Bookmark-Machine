@@ -28,11 +28,11 @@ chrome.storage.sync.get(['dateRangeObject'], (dates) => {
   }
 )
 
- Array.from(document.getElementsByTagName('select')).map(select => {
-  select.addEventListener('change', storeDatesRange)
- })
+Array.from(document.getElementsByTagName('select')).map(select => {
+select.addEventListener('change', storeDatesRange)
+})
 
-document.getElementById('set_to_beginning_button').addEventListener('click', () => {
+document.getElementById('set_to_start_button').addEventListener('click', () => {
   document.getElementById('start_month').value = 'January'
   document.getElementById('start_year').value = '2008'
   storeDatesRange()
@@ -125,7 +125,7 @@ function addElementsToList (bookmark) {
   label.id = bookmark.id
   label.htmlFor = 'checkbox' + bookmark.id
   let folderIcon = document.createElement('img')
-  folderIcon.src = 'Res/Icons/folder.svg'
+  folderIcon.src = 'Res/Icons/folder_pixel.svg'
 
   if (bookmark.parentId != 0) {
     const parentFolder = document.getElementById(bookmark.parentId)
