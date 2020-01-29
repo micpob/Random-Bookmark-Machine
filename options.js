@@ -23,30 +23,37 @@ chrome.storage.sync.get(['dateRangeObject'], (dates) => {
     document.getElementById('end_month').value = dates.dateRangeObject.endMonth
     document.getElementById('end_year').value = dates.dateRangeObject.endYear
     } else {
-    const startMonth = document.getElementById('start_month').value
-    const startYear = document.getElementById('start_year').value
-    const endMonth = document.getElementById('end_month').value
-    const endYear = document.getElementById('end_year').value
-    const dateRangeObject = {
-      startMonth, startYear, endMonth, endYear
-    }
-    chrome.storage.sync.set({ dateRangeObject: dateRangeObject })
+    storeDatesRange()
     }   
   }
 )
 
  Array.from(document.getElementsByTagName('select')).map(select => {
-  select.addEventListener('change', (e) => {
-    const startMonth = document.getElementById('start_month').value
-    const startYear = document.getElementById('start_year').value
-    const endMonth = document.getElementById('end_month').value
-    const endYear = document.getElementById('end_year').value
-    const dateRangeObject = {
-      startMonth, startYear, endMonth, endYear
-    }
-    chrome.storage.sync.set({ dateRangeObject: dateRangeObject })      
-  })
+  select.addEventListener('change', storeDatesRange)
  })
+
+document.getElementById('set_to_beginning_button').addEventListener('click', () => {
+  document.getElementById('start_month').value = 'January'
+  document.getElementById('start_year').value = '2008'
+  storeDatesRange()
+})
+
+document.getElementById('set_to_now_button').addEventListener('click', () => {
+  document.getElementById('end_month').value = currentMonth
+  document.getElementById('end_year').value = currentYear
+  storeDatesRange()
+})
+
+function storeDatesRange () {
+const startMonth = document.getElementById('start_month').value
+const startYear = document.getElementById('start_year').value
+const endMonth = document.getElementById('end_month').value
+const endYear = document.getElementById('end_year').value
+const dateRangeObject = {
+  startMonth, startYear, endMonth, endYear
+}
+chrome.storage.sync.set({ dateRangeObject: dateRangeObject })      
+}
 
 const checkAllBox = document.getElementById('check_all_checkbox')
 const checkAllLabelText = document.getElementById('check_all_label_text')
