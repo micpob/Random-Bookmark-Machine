@@ -1,5 +1,36 @@
 document.getElementById('extension_version').innerHTML = chrome.runtime.getManifest().version
 
+const showInfoToggle = document.getElementById('show_info_checkbox')
+const showInfoToggleLabel = document.getElementById('show_info_label')
+const showInfoToggleLabelText = document.getElementById('show_info_label_text')
+let showInfoOn = 'ON'
+let showInfoOff = 'OFF'
+
+chrome.storage.sync.get('showInfo', (status) => {
+  if (status.showInfo && status.showInfo === 'on') {
+    //showInfoToggleLabel.style.backgroundColor = '#02a802'
+    showInfoToggleLabelText.innerText = showInfoOn
+    showInfoToggle.checked = true
+  } else {
+    //showInfoToggleLabel.style.backgroundColor = '#AAAAAA'
+    showInfoToggleLabelText.innerText = showInfoOff
+    showInfoToggle.checked = false
+  }
+})
+
+showInfoToggle.addEventListener('change', (e) => {
+    if (e.target.checked) {
+      chrome.storage.sync.set({ 'showInfo': 'on' })  
+      showInfoToggleLabelText.innerText = showInfoOn
+      //showInfoToggleLabel.style.backgroundColor = '#02a802'
+    } else {
+      chrome.storage.sync.set({ 'showInfo': 'off' })  
+      showInfoToggleLabelText.innerText = showInfoOff
+      //showInfoToggleLabel.style.backgroundColor = '#AAAAAA'
+    }
+  }
+)
+
 const date = new Date()
 const currentMonth = date.toLocaleString('default', { month: 'long' })
 const endMonths = Array.from(document.getElementById('end_month').options)

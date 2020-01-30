@@ -17,6 +17,21 @@ h1 {
   color: #ffd42aff;
 }
 
+#show_notifications_container {
+  margin: 30px 0 40px 0;
+}
+
+#show_info_label {
+  display: block;
+  width: 54px;
+  padding: 10px;
+  border: 2px solid lightgray;
+  color: white;
+  font-size: large;
+  background-color: #02a802;
+  text-align: center;
+}
+
 #date_range_container {
   display: flex;
   margin: 30px 0 40px 0;
@@ -48,12 +63,13 @@ form#end_date_range {
 
 #check_all_label {
   display: block;
-  width: max-content;
+  width: 192px;
   padding: 10px;
   border: 2px solid lightgray;
   color: white;
   font-size: large;
-  background-color: rgb(2, 168, 2);
+  background-color: #02a802;
+  text-align: center;
 }
 
 #folders_list {
