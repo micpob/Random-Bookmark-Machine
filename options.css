@@ -13,6 +13,10 @@ body {
   color: white;
 }
 
+h1 {
+  color: #ffd42aff;
+}
+
 #date_range_container {
   display: flex;
   margin: 30px 0 40px 0;

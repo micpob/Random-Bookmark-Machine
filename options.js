@@ -1,20 +1,21 @@
+document.getElementById('extension_version').innerHTML = chrome.runtime.getManifest().version
 
-  const date = new Date()
-  const currentMonth = date.toLocaleString('default', { month: 'long' })
-  const endMonths = Array.from(document.getElementById('end_month').options)
-  endMonths.map(option => { if (option.value === currentMonth) { option.setAttribute('selected', true) } })
-  const startYearsList = document.getElementById('start_year')
-  const endYearsList = document.getElementById('end_year')
-  const currentYear = date.getFullYear()
-  const yearsList = Array.from({ length: currentYear - 2007 }, (v, i) => currentYear - i)
+const date = new Date()
+const currentMonth = date.toLocaleString('default', { month: 'long' })
+const endMonths = Array.from(document.getElementById('end_month').options)
+endMonths.map(option => { if (option.value === currentMonth) { option.setAttribute('selected', true) } })
+const startYearsList = document.getElementById('start_year')
+const endYearsList = document.getElementById('end_year')
+const currentYear = date.getFullYear()
+const yearsList = Array.from({ length: currentYear - 2007 }, (v, i) => currentYear - i)
 
-  for (let i = 0; i < yearsList.length; i++) {
-    endYearsList.options.add(new Option(yearsList[i], yearsList[i]))
-  }
+for (let i = 0; i < yearsList.length; i++) {
+  endYearsList.options.add(new Option(yearsList[i], yearsList[i]))
+}
 
-  for(let i = yearsList.length-1; i >= 0; i--) {
-    startYearsList.options.add(new Option(yearsList[i], yearsList[i]))
-  }
+for(let i = yearsList.length-1; i >= 0; i--) {
+  startYearsList.options.add(new Option(yearsList[i], yearsList[i]))
+}
 
 chrome.storage.sync.get(['dateRangeObject'], (dates) => {
   if (dates.dateRangeObject) { 
@@ -125,7 +126,7 @@ function addElementsToList (bookmark) {
   label.id = bookmark.id
   label.htmlFor = 'checkbox' + bookmark.id
   let folderIcon = document.createElement('img')
-  folderIcon.src = 'Res/Icons/folder_pixel.svg'
+  folderIcon.src = 'Res/Icons/folder.svg'
 
   if (bookmark.parentId != 0) {
     const parentFolder = document.getElementById(bookmark.parentId)
