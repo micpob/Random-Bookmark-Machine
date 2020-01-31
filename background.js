@@ -20,7 +20,7 @@ function process_bookmark (bookmarks) {
     if (bookmark.url) {
       if (bookmark.dateAdded >= startDate && bookmark.dateAdded <= endDate && !excludedFolders.includes(bookmark.parentId)) {
         if (showBookmarkInfo) {
-          const dateAdded = new Date(bookmark.dateAdded).toLocaleDateString()
+          const dateAdded = new Date(bookmark.dateAdded).toLocaleDateString('default', { year: 'numeric', month: 'long', day: 'numeric' })
           const folderId = bookmark.parentId
           const parentFolderTitle = parentFoldersObject[folderId]
           const urlObject = {
