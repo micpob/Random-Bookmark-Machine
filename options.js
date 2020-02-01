@@ -1,5 +1,32 @@
 document.getElementById('extension_version').innerHTML = chrome.runtime.getManifest().version
 
+const openInNewTabToggle = document.getElementById('open_in_new_tab_checkbox')
+const openInNewTabToggleLabel = document.getElementById('open_in_new_tab_label')
+const openInNewTabToggleLabelText = document.getElementById('open_in_new_tab_label_text')
+let openInNewTabOn = 'ON'
+let openInNewTabOff = 'OFF'
+
+chrome.storage.sync.get('openInNewTab', (status) => {
+  if (status.openInNewTab && status.openInNewTab === 'on') {
+    openInNewTabToggleLabelText.innerText = openInNewTabOn
+    openInNewTabToggle.checked = true
+  } else {
+    openInNewTabToggleLabelText.innerText = showInfoOff
+    openInNewTabToggle.checked = false
+  }
+})
+
+openInNewTabToggle.addEventListener('change', (e) => {
+    if (e.target.checked) {
+      chrome.storage.sync.set({ 'openInNewTab': 'on' })  
+      openInNewTabToggleLabelText.innerText = openInNewTabOn
+    } else {
+      chrome.storage.sync.set({ 'openInNewTab': 'off' })  
+      openInNewTabToggleLabelText.innerText = openInNewTabOff
+    }
+  }
+)
+
 const showInfoToggle = document.getElementById('show_info_checkbox')
 const showInfoToggleLabel = document.getElementById('show_info_label')
 const showInfoToggleLabelText = document.getElementById('show_info_label_text')

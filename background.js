@@ -1,3 +1,4 @@
+let openInNewTab = false
 let showBookmarkInfo = false
 let notificationsTimeout = undefined
 let startDate = 0
@@ -64,7 +65,14 @@ function openBookmark () {
   const randomIndex = Math.floor(Math.random() * bookmarkedUrlsArrayLength)
   const randomUrlObject = bookmarkedUrlsArray[randomIndex]
   randomUrl = randomUrlObject.url
-  window.open(randomUrl)
+  console.log(randomUrl)
+  if (openInNewTab) {
+    chrome.tabs.create({ url: randomUrl })
+  } else {
+    chrome.tabs.update({ url: randomUrl })
+  }
+  //window.open(randomUrl, '_self')
+  //window.location.href = randomUrl
   if (showBookmarkInfo) {
     chrome.notifications.clear('BookmarkRouletteUrlInfo')
     chrome.notifications.create('BookmarkRouletteUrlInfo', {   
@@ -88,25 +96,31 @@ function openBookmark () {
 
 chrome.browserAction.onClicked.addListener( () => {
   bookmarkedUrlsArray.length = 0
-  chrome.storage.sync.get('showInfo', (status) => {
-    if (status.showInfo && status.showInfo === 'on') {
-      console.log('status.showInfo: ', status.showInfo)      
-      showBookmarkInfo = true
+  chrome.storage.sync.get('openInNewTab', (status) => {
+    if (status.openInNewTab && status.openInNewTab === 'on') {
+      openInNewTab = true
     } else {
-      showBookmarkInfo = false
+      openInNewTab = false
     }
-    chrome.storage.sync.get(['dateRangeObject'], (dates) => {
-      startDate = new Date(`${dates.dateRangeObject.startMonth} 01 ${dates.dateRangeObject.startYear}`)
-      startDate = startDate.getTime()
-      endDate = new Date(`${dates.dateRangeObject.endMonth} 01 ${dates.dateRangeObject.endYear}`)
-      endDate.setMonth(endDate.getMonth() + 1, 1)
-      endDate = endDate.getTime()
-      chrome.storage.sync.get(['excludedFolders'], (folderList) => {
-        if (folderList.excludedFolders) {
-          excludedFolders = folderList.excludedFolders
-        }
-        chrome.bookmarks.getTree( process_bookmark )
+    chrome.storage.sync.get('showInfo', (status) => {
+      if (status.showInfo && status.showInfo === 'on') {
+        showBookmarkInfo = true
+      } else {
+        showBookmarkInfo = false
+      }
+      chrome.storage.sync.get(['dateRangeObject'], (dates) => {
+        startDate = new Date(`${dates.dateRangeObject.startMonth} 01 ${dates.dateRangeObject.startYear}`)
+        startDate = startDate.getTime()
+        endDate = new Date(`${dates.dateRangeObject.endMonth} 01 ${dates.dateRangeObject.endYear}`)
+        endDate.setMonth(endDate.getMonth() + 1, 1)
+        endDate = endDate.getTime()
+        chrome.storage.sync.get(['excludedFolders'], (folderList) => {
+          if (folderList.excludedFolders) {
+            excludedFolders = folderList.excludedFolders
+          }
+          chrome.bookmarks.getTree( process_bookmark )
+        }) 
       }) 
-    }) 
-  })  
+    })
+  }) 
 })

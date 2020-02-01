@@ -18,11 +18,11 @@ h1 {
   color: #ffd42aff;
 }
 
-#show_notifications_container {
+#show_notifications_container, #open_in_new_tab_container {
   margin: 30px 0 40px 0;
 }
 
-#show_info_label {
+#show_info_label, #open_in_new_tab_label {
   display: block;
   width: 54px;
   padding: 10px;
