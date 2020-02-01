@@ -64,13 +64,15 @@ Array.from(document.getElementsByTagName('select')).map(select => {
 select.addEventListener('change', storeDatesRange)
 })
 
-document.getElementById('set_to_start_button').addEventListener('click', () => {
-  document.getElementById('start_month').value = 'January'
-  document.getElementById('start_year').value = '2008'
+document.getElementById('set_to_start_button').addEventListener('click', (e) => {
+  e.preventDefault()
+  document.getElementById('start_month').selectedIndex = 0
+  document.getElementById('start_year').selectedIndex = 0
   storeDatesRange()
 })
 
-document.getElementById('set_to_now_button').addEventListener('click', () => {
+document.getElementById('set_to_now_button').addEventListener('click', (e) => {
+  e.preventDefault()
   document.getElementById('end_month').value = currentMonth
   document.getElementById('end_year').value = currentYear
   storeDatesRange()
