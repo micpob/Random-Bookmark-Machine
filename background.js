@@ -94,7 +94,23 @@ function openBookmark () {
   bookmarkedUrlsArray.length = 0
 }
 
+chrome.commands.onCommand.addListener(function (command) {
+  if (command === "get_random_bookmark") {
+    chrome.storage.sync.get('useShortcut', (status) => {
+      console.log('status.useShortcut: ', status.useShortcut)
+      
+      if (status.useShortcut && status.useShortcut === 'on') {        
+        getRandomBookmark()        
+      }
+    }) 
+  }     
+})
+
 chrome.browserAction.onClicked.addListener( () => {
+  getRandomBookmark()
+})
+
+function getRandomBookmark() {
   bookmarkedUrlsArray.length = 0
   chrome.storage.sync.get('openInNewTab', (status) => {
     if (status.openInNewTab && status.openInNewTab === 'on') {
@@ -123,4 +139,4 @@ chrome.browserAction.onClicked.addListener( () => {
       }) 
     })
   }) 
-})
+}

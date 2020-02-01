@@ -35,11 +35,9 @@ let showInfoOff = 'OFF'
 
 chrome.storage.sync.get('showInfo', (status) => {
   if (status.showInfo && status.showInfo === 'on') {
-    //showInfoToggleLabel.style.backgroundColor = '#02a802'
     showInfoToggleLabelText.innerText = showInfoOn
     showInfoToggle.checked = true
   } else {
-    //showInfoToggleLabel.style.backgroundColor = '#AAAAAA'
     showInfoToggleLabelText.innerText = showInfoOff
     showInfoToggle.checked = false
   }
@@ -49,11 +47,36 @@ showInfoToggle.addEventListener('change', (e) => {
     if (e.target.checked) {
       chrome.storage.sync.set({ 'showInfo': 'on' })  
       showInfoToggleLabelText.innerText = showInfoOn
-      //showInfoToggleLabel.style.backgroundColor = '#02a802'
     } else {
       chrome.storage.sync.set({ 'showInfo': 'off' })  
       showInfoToggleLabelText.innerText = showInfoOff
-      //showInfoToggleLabel.style.backgroundColor = '#AAAAAA'
+    }
+  }
+)
+
+const useShortcutToggle = document.getElementById('use_shortcut_checkbox')
+const useShortcutToggleLabel = document.getElementById('use_shortcut_label')
+const useShortcutToggleLabelText = document.getElementById('use_shortcut_label_text')
+let useShortcutOn = 'ON'
+let useShortcutOff = 'OFF'
+
+chrome.storage.sync.get('useShortcut', (status) => {
+  if (status.useShortcut && status.useShortcut === 'on') {
+    useShortcutToggleLabelText.innerText = useShortcutOn
+    useShortcutToggle.checked = true
+  } else {
+    useShortcutToggleLabelText.innerText = showInfoOff
+    useShortcutToggle.checked = false
+  }
+})
+
+useShortcutToggle.addEventListener('change', (e) => {
+    if (e.target.checked) {
+      chrome.storage.sync.set({ 'useShortcut': 'on' })  
+      useShortcutToggleLabelText.innerText = useShortcutOn
+    } else {
+      chrome.storage.sync.set({ 'useShortcut': 'off' })  
+      useShortcutToggleLabelText.innerText = useShortcutOff
     }
   }
 )
