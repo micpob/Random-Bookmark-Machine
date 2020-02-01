@@ -1,25 +1,25 @@
 {
-  "name": "Bookmark roulette",
-  "short_name": "Bkmkroul",
+  "name": "Bookmark Roulette",
+  "short_name": "BkmkRoul",
   "version": "1.0",
-  "description": "Visit a random site in your bookmarks",
+  "description": "Opens a random site from your bookmarks list",
   "manifest_version": 2,
+  "icons": {
+    "16": "Res/Icons/icon16.png",
+    "32": "Res/Icons/icon32.png",
+    "48": "Res/Icons/icon48.png",
+    "128": "Res/Icons/icon128.png"
+  },
   "background": {
     "scripts": ["background.js"],
     "persistent": false
   },
-  "permissions": ["storage", "bookmarks", "notifications"],
+  "permissions": ["storage", "bookmarks", "notifications", "tabs"],
   "options_page": "options.html",
   "browser_action": {
     "default_icon": {
       "16": "Res/Icons/icon16.png",
       "32": "Res/Icons/icon32.png",
-      "48": "Res/Icons/icon48.png",
-      "128": "Res/Icons/icon128.png"
-    },
-    "icons": {
-      "32": "Res/Icons/icon32.png",
-      "16": "Res/Icons/icon16.png",
       "48": "Res/Icons/icon48.png",
       "128": "Res/Icons/icon128.png"
     }

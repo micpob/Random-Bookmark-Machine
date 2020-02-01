@@ -1,6 +1,6 @@
 @font-face {
   font-family: amiga2;
-  src: url(REs/Fonts/amiga4everpro.ttf);
+  src: url(REs/Fonts/amiga4everpro2.ttf);
 }
 
 * {
@@ -11,6 +11,7 @@
 body {
   background-color: #1F54AC;
   color: white;
+  margin-left: 15px;
 }
 
 h1 {
@@ -34,7 +35,7 @@ h1 {
 
 #date_range_container {
   display: flex;
-  margin: 30px 0 40px 0;
+  margin: 30px 0 50px 0;
 }
 
 #date_range_container button {
@@ -100,15 +101,11 @@ body::-webkit-scrollbar {
 }
  
 body::-webkit-scrollbar-track {
-  background-color: black;
-  border-left: 3px solid white;
-  border-right: 3px solid white;
+  background-color: #1F54AC;
 }
  
 body::-webkit-scrollbar-thumb {
-  background-color: orange;
-  border-left: 3px solid white;
-  border-right: 3px solid white;
+  background-color: white;
 }
 
 @media only screen and (max-width: 821px) {
