@@ -125,11 +125,18 @@ function getRandomBookmark() {
         showBookmarkInfo = false
       }
       chrome.storage.sync.get(['dateRangeObject'], (dates) => {
-        startDate = new Date(`${dates.dateRangeObject.startMonth} 01 ${dates.dateRangeObject.startYear}`)
-        startDate = startDate.getTime()
-        endDate = new Date(`${dates.dateRangeObject.endMonth} 01 ${dates.dateRangeObject.endYear}`)
-        endDate.setMonth(endDate.getMonth() + 1, 1)
-        endDate = endDate.getTime()
+        if (dates.dateRangeObject) {
+          startDate = new Date(`${dates.dateRangeObject.startMonth} 01 ${dates.dateRangeObject.startYear}`)
+          startDate = startDate.getTime()
+          endDate = new Date(`${dates.dateRangeObject.endMonth} 01 ${dates.dateRangeObject.endYear}`)
+          endDate.setMonth(endDate.getMonth() + 1, 1)
+          endDate = endDate.getTime()
+        } else {
+          startDate = 0
+          endDate = new Date()
+          endDate.setMonth(endDate.getMonth() + 1, 1)
+          endDate = endDate.getTime()
+        }        
         chrome.storage.sync.get(['excludedFolders'], (folderList) => {
           if (folderList.excludedFolders) {
             excludedFolders = folderList.excludedFolders
