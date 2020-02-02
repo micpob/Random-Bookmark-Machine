@@ -3,15 +3,13 @@ document.getElementById('extension_version').innerHTML = chrome.runtime.getManif
 const openInNewTabToggle = document.getElementById('open_in_new_tab_checkbox')
 const openInNewTabToggleLabel = document.getElementById('open_in_new_tab_label')
 const openInNewTabToggleLabelText = document.getElementById('open_in_new_tab_label_text')
-let openInNewTabOn = 'ON'
-let openInNewTabOff = 'OFF'
 
 chrome.storage.sync.get('openInNewTab', (status) => {
   if (status.openInNewTab && status.openInNewTab === 'on') {
-    openInNewTabToggleLabelText.innerText = openInNewTabOn
+    openInNewTabToggleLabelText.innerText = 'ON'
     openInNewTabToggle.checked = true
   } else {
-    openInNewTabToggleLabelText.innerText = showInfoOff
+    openInNewTabToggleLabelText.innerText = 'OFF'
     openInNewTabToggle.checked = false
   }
 })
@@ -19,10 +17,10 @@ chrome.storage.sync.get('openInNewTab', (status) => {
 openInNewTabToggle.addEventListener('change', (e) => {
     if (e.target.checked) {
       chrome.storage.sync.set({ 'openInNewTab': 'on' })  
-      openInNewTabToggleLabelText.innerText = openInNewTabOn
+      openInNewTabToggleLabelText.innerText = 'ON'
     } else {
       chrome.storage.sync.set({ 'openInNewTab': 'off' })  
-      openInNewTabToggleLabelText.innerText = openInNewTabOff
+      openInNewTabToggleLabelText.innerText = 'OFF'
     }
   }
 )
@@ -30,15 +28,13 @@ openInNewTabToggle.addEventListener('change', (e) => {
 const showInfoToggle = document.getElementById('show_info_checkbox')
 const showInfoToggleLabel = document.getElementById('show_info_label')
 const showInfoToggleLabelText = document.getElementById('show_info_label_text')
-let showInfoOn = 'ON'
-let showInfoOff = 'OFF'
 
 chrome.storage.sync.get('showInfo', (status) => {
   if (status.showInfo && status.showInfo === 'on') {
-    showInfoToggleLabelText.innerText = showInfoOn
+    showInfoToggleLabelText.innerText = 'ON'
     showInfoToggle.checked = true
   } else {
-    showInfoToggleLabelText.innerText = showInfoOff
+    showInfoToggleLabelText.innerText = 'OFF'
     showInfoToggle.checked = false
   }
 })
@@ -46,10 +42,10 @@ chrome.storage.sync.get('showInfo', (status) => {
 showInfoToggle.addEventListener('change', (e) => {
     if (e.target.checked) {
       chrome.storage.sync.set({ 'showInfo': 'on' })  
-      showInfoToggleLabelText.innerText = showInfoOn
+      showInfoToggleLabelText.innerText = 'ON'
     } else {
       chrome.storage.sync.set({ 'showInfo': 'off' })  
-      showInfoToggleLabelText.innerText = showInfoOff
+      showInfoToggleLabelText.innerText = 'OFF'
     }
   }
 )
@@ -57,15 +53,13 @@ showInfoToggle.addEventListener('change', (e) => {
 const useShortcutToggle = document.getElementById('use_shortcut_checkbox')
 const useShortcutToggleLabel = document.getElementById('use_shortcut_label')
 const useShortcutToggleLabelText = document.getElementById('use_shortcut_label_text')
-let useShortcutOn = 'ON'
-let useShortcutOff = 'OFF'
 
 chrome.storage.sync.get('useShortcut', (status) => {
   if (status.useShortcut && status.useShortcut === 'on') {
-    useShortcutToggleLabelText.innerText = useShortcutOn
+    useShortcutToggleLabelText.innerText = 'ON'
     useShortcutToggle.checked = true
   } else {
-    useShortcutToggleLabelText.innerText = showInfoOff
+    useShortcutToggleLabelText.innerText = 'OFF'
     useShortcutToggle.checked = false
   }
 })
@@ -73,10 +67,10 @@ chrome.storage.sync.get('useShortcut', (status) => {
 useShortcutToggle.addEventListener('change', (e) => {
     if (e.target.checked) {
       chrome.storage.sync.set({ 'useShortcut': 'on' })  
-      useShortcutToggleLabelText.innerText = useShortcutOn
+      useShortcutToggleLabelText.innerText = 'ON'
     } else {
       chrome.storage.sync.set({ 'useShortcut': 'off' })  
-      useShortcutToggleLabelText.innerText = useShortcutOff
+      useShortcutToggleLabelText.innerText = 'OFF'
     }
   }
 )

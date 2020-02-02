@@ -74,8 +74,8 @@ function openBookmark () {
   //window.open(randomUrl, '_self')
   //window.location.href = randomUrl
   if (showBookmarkInfo) {
-    chrome.notifications.clear('BookmarkRouletteUrlInfo')
-    chrome.notifications.create('BookmarkRouletteUrlInfo', {   
+    chrome.notifications.clear('RandomBookmarkMachineInfo')
+    chrome.notifications.create('RandomBookmarkMachineInfo', {   
       type: 'basic', 
       iconUrl: 'Res/Icons/icon48.png', 
       title: `Bookmarked on: ${randomUrlObject.urlDate} \nIn folder: ${randomUrlObject.urlParentFolder}`, 
@@ -87,7 +87,7 @@ function openBookmark () {
           clearTimeout(notificationsTimeout)        
         }
         notificationsTimeout = setTimeout(() => {
-          chrome.notifications.clear('BookmarkRouletteUrlInfo')
+          chrome.notifications.clear('RandomBookmarkMachineInfo')
         }, 4000) 
       })
   }

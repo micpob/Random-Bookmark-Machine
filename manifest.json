@@ -1,6 +1,6 @@
 {
-  "name": "Bookmark Roulette",
-  "short_name": "BkmkRoul",
+  "name": "Random Bookmark Machine",
+  "short_name": "RndBkMch",
   "version": "1.0",
   "description": "Opens a random site from your bookmarks list",
   "manifest_version": 2,
