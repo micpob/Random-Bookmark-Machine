@@ -1,5 +1,5 @@
 let openInNewTab = false
-let showBookmarkInfo = false
+let showBookmarkInfo = true
 let notificationsTimeout = undefined
 let startDate = 0
 let endDate = 0
@@ -71,8 +71,6 @@ function openBookmark () {
   } else {
     chrome.tabs.update({ url: randomUrl })
   }
-  //window.open(randomUrl, '_self')
-  //window.location.href = randomUrl
   if (showBookmarkInfo) {
     chrome.notifications.clear('RandomBookmarkMachineInfo')
     chrome.notifications.create('RandomBookmarkMachineInfo', {   
@@ -97,8 +95,6 @@ function openBookmark () {
 chrome.commands.onCommand.addListener(function (command) {
   if (command === "get_random_bookmark") {
     chrome.storage.sync.get('useShortcut', (status) => {
-      console.log('status.useShortcut: ', status.useShortcut)
-      
       if (status.useShortcut && status.useShortcut === 'on') {        
         getRandomBookmark()        
       }
@@ -119,10 +115,10 @@ function getRandomBookmark() {
       openInNewTab = false
     }
     chrome.storage.sync.get('showInfo', (status) => {
-      if (status.showInfo && status.showInfo === 'on') {
-        showBookmarkInfo = true
-      } else {
+      if (status.showInfo && status.showInfo === 'off') {
         showBookmarkInfo = false
+      } else {
+        showBookmarkInfo = true
       }
       chrome.storage.sync.get(['dateRangeObject'], (dates) => {
         if (dates.dateRangeObject) {

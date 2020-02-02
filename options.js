@@ -30,12 +30,12 @@ const showInfoToggleLabel = document.getElementById('show_info_label')
 const showInfoToggleLabelText = document.getElementById('show_info_label_text')
 
 chrome.storage.sync.get('showInfo', (status) => {
-  if (status.showInfo && status.showInfo === 'on') {
-    showInfoToggleLabelText.innerText = 'ON'
-    showInfoToggle.checked = true
-  } else {
+  if (status.showInfo && status.showInfo === 'off') {
     showInfoToggleLabelText.innerText = 'OFF'
     showInfoToggle.checked = false
+  } else {
+    showInfoToggleLabelText.innerText = 'ON'
+    showInfoToggle.checked = true
   }
 })
 
