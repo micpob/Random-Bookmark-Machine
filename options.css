@@ -27,7 +27,7 @@ h1 {
 }
 
 #show_notifications_container, #use_shortcut_container {
-  margin-left: 15%;
+  margin-left: 230px;
 }
 
 #show_info_label, #open_in_new_tab_label, #use_shortcut_label {
@@ -43,7 +43,7 @@ h1 {
 
 #date_range_container {
   display: flex;
-  margin: 30px 0 50px 0;
+  margin: 0 0 50px 0;
 }
 
 #date_range_container button {
@@ -67,7 +67,7 @@ select:hover {
 }
 
 form#end_date_range {
-  margin-left: 10%;
+  margin-left: 130px;
 }
 
 #check_all_label {
@@ -105,7 +105,7 @@ input[type='checkbox'] {
 }
 
 body::-webkit-scrollbar {
-  width: 2em;
+  width: 1.7em;
 }
  
 body::-webkit-scrollbar-track {

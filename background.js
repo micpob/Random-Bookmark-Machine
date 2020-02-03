@@ -65,7 +65,6 @@ function openBookmark () {
   const randomIndex = Math.floor(Math.random() * bookmarkedUrlsArrayLength)
   const randomUrlObject = bookmarkedUrlsArray[randomIndex]
   randomUrl = randomUrlObject.url
-  console.log(randomUrl)
   if (openInNewTab) {
     chrome.tabs.create({ url: randomUrl })
   } else {
