@@ -8,6 +8,14 @@
   font-weight: 300;
 }
 
+/* *:focus {
+  outline: 3px solid #ffd42aff;
+} */
+
+/* *:hover {
+  outline: none;
+} */
+
 body {
   background-color: #1F54AC;
   color: white;
@@ -100,9 +108,18 @@ img {
 }
 
 input[type='checkbox'] {
-  display: none;
-  visibility: hidden; 
+  position: absolute;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
 }
+
+/* input[type='checkbox']:focus + label {
+  outline: #5d9dd5 solid 1px;
+  box-shadow: 0 0px 8px #5e9ed6;
+  border: 2px solid yellow;
+} */
 
 body::-webkit-scrollbar {
   width: 1.7em;
