@@ -76,7 +76,7 @@ useShortcutToggle.addEventListener('change', (e) => {
 )
 
 const date = new Date()
-const currentMonth = date.toLocaleString('default', { month: 'long' })
+const currentMonth = date.toLocaleString('en-GB', { month: 'long' })
 const endMonths = Array.from(document.getElementById('end_month').options)
 endMonths.map(option => { if (option.value === currentMonth) { option.setAttribute('selected', true) } })
 const startYearsList = document.getElementById('start_year')

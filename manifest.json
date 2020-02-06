@@ -1,7 +1,7 @@
 {
   "name": "Random Bookmark Machine",
   "short_name": "RndBkMch",
-  "version": "1.0",
+  "version": "1.2",
   "description": "Explore forgotten bookmarks with this highly customizable time machine!",
   "manifest_version": 2,
   "icons": {
@@ -11,11 +11,12 @@
     "128": "Res/Icons/icon128.png"
   },
   "background": {
-    "scripts": ["background.js"],
-    "persistent": false
+    "scripts": ["background.js"]
   },
   "permissions": ["storage", "bookmarks", "notifications", "tabs"],
-  "options_page": "options.html",
+  "options_ui": {
+    "page": "options.html"
+  },
   "browser_action": {
     "default_icon": {
       "16": "Res/Icons/icon16.png",
