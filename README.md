@@ -12,7 +12,7 @@ The extension's behavior is heavily customizable in the **vintage styled** Optio
 
 <br>
 <div align="center" >
-  <img src="Docs/Screenshots/options_page.png" alt="Random Bookmark Machine screenshot 1" width="640px">
+  <img src="Docs/Screenshots/options_page.png" alt="Random Bookmark Machine screenshot 2" width="640px">
 </div>
 <br>
 
@@ -25,10 +25,18 @@ You can choose to:
 
 <br>
 <div align="center" >
-  <img src="Docs/Screenshots/notification_RBM.png" alt="Random Bookmark Machine screenshot 1" width="640px">
+  <img src="Docs/Screenshots/notification_RBM.png" alt="Random Bookmark Machine screenshot 3" width="640px">
 </div> 
 <br>
+
+&nbsp;  
+
+## Stack used:
+
+HTML, CSS, Javascript (Extensions APIs)
+
+&nbsp;
   
-Link to the extension in the Chrome Web Store: 
+### Chrome Web Store link: 
 
 https://chrome.google.com/webstore/detail/random-bookmark-machine/jpofhhlmbncfdodogngdidhkecjigaab
