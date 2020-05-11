@@ -8,14 +8,6 @@
   font-weight: 300;
 }
 
-/* *:focus {
-  outline: 3px solid #ffd42aff;
-} */
-
-/* *:hover {
-  outline: none;
-} */
-
 body {
   background-color: #1F54AC;
   color: white;
@@ -32,10 +24,11 @@ h1 {
 
 #show_notifications_container, #open_in_new_tab_container, #use_shortcut_container {
   margin: 30px 0 40px 0;
+  width: 247px;
 }
 
 #show_notifications_container, #use_shortcut_container {
-  margin-left: 230px;
+  margin-left: 150px;
 }
 
 #show_info_label, #open_in_new_tab_label, #use_shortcut_label {
