@@ -123,7 +123,17 @@ function getRandomBookmark() {
         if (dates.dateRangeObject) {
           startDate = new Date(`${dates.dateRangeObject.startMonth} 01 ${dates.dateRangeObject.startYear}`)
           startDate = startDate.getTime()
-          endDate = new Date(`${dates.dateRangeObject.endMonth} 01 ${dates.dateRangeObject.endYear}`)
+          let endMonth
+          let endYear
+          if (dates.dateRangeObject.endMonth.length > 0) {
+            const date = new Date()
+            endMonth = date.toLocaleString('en-GB', { month: 'long' })
+            endYear = date.getFullYear()
+          } else {
+            endMonth = dates.dateRangeObject.endMonth
+            endYear = dates.dateRangeObject.endYear
+          }
+          endDate = new Date(`${endMonth} 01 ${endYear}`)
           endDate.setMonth(endDate.getMonth() + 1, 1)
           endDate = endDate.getTime()
         } else {

@@ -4,6 +4,7 @@ const openInNewTabToggle = document.getElementById('open_in_new_tab_checkbox')
 const openInNewTabToggleLabel = document.getElementById('open_in_new_tab_label')
 const openInNewTabToggleLabelText = document.getElementById('open_in_new_tab_label_text')
 
+//Options buttons
 chrome.storage.sync.get('openInNewTab', (status) => {
   if (status.openInNewTab && status.openInNewTab === 'on') {
     openInNewTabToggleLabelText.innerText = 'ON'
@@ -75,6 +76,7 @@ useShortcutToggle.addEventListener('change', (e) => {
   }
 )
 
+//Set dates range
 const date = new Date()
 const currentMonth = date.toLocaleString('en-GB', { month: 'long' })
 const endMonths = Array.from(document.getElementById('end_month').options)
@@ -96,8 +98,8 @@ chrome.storage.sync.get(['dateRangeObject'], (dates) => {
   if (dates.dateRangeObject) { 
     document.getElementById('start_month').value = dates.dateRangeObject.startMonth
     document.getElementById('start_year').value = dates.dateRangeObject.startYear
-    document.getElementById('end_month').value = dates.dateRangeObject.endMonth
-    document.getElementById('end_year').value = dates.dateRangeObject.endYear
+    document.getElementById('end_month').value = dates.dateRangeObject.endMonth.length > 0 ? dates.dateRangeObject.endMonth : currentMonth
+    document.getElementById('end_year').value = dates.dateRangeObject.endYear.length > 0 ? dates.dateRangeObject.endYear : currentYear
     } else {
     storeDatesRange()
     }   
@@ -105,7 +107,7 @@ chrome.storage.sync.get(['dateRangeObject'], (dates) => {
 )
 
 Array.from(document.getElementsByTagName('select')).map(select => {
-select.addEventListener('change', storeDatesRange)
+  select.addEventListener('change', storeDatesRange)
 })
 
 document.getElementById('set_to_start_button').addEventListener('click', (e) => {
@@ -123,16 +125,18 @@ document.getElementById('set_to_now_button').addEventListener('click', (e) => {
 })
 
 function storeDatesRange () {
-const startMonth = document.getElementById('start_month').value
-const startYear = document.getElementById('start_year').value
-const endMonth = document.getElementById('end_month').value
-const endYear = document.getElementById('end_year').value
-const dateRangeObject = {
-  startMonth, startYear, endMonth, endYear
-}
-chrome.storage.sync.set({ dateRangeObject: dateRangeObject })      
+  const startMonth = document.getElementById('start_month').value
+  const startYear = document.getElementById('start_year').value
+  const endYear = currentYear === document.getElementById('end_year').value ? '' : document.getElementById('end_year').value
+  const endMonth = endYear.length > 0 ? document.getElementById('end_month').value : ''
+  
+  const dateRangeObject = {
+    startMonth, startYear, endMonth, endYear
+  }
+  chrome.storage.sync.set({ dateRangeObject: dateRangeObject })      
 }
 
+//Filter folders
 const checkAllBox = document.getElementById('check_all_checkbox')
 const checkAllLabelText = document.getElementById('check_all_label_text')
 let selectAllText = 'Select All'
