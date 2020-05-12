@@ -125,9 +125,9 @@ function getRandomBookmark() {
           startDate = startDate.getTime()
           let endMonth
           let endYear
-          if (dates.dateRangeObject.endMonth.length > 0) {
+          if (dates.dateRangeObject.endMonth.length < 1) {
             const date = new Date()
-            endMonth = date.toLocaleString('en-GB', { month: 'long' })
+            endMonth = date.getMonth()
             endYear = date.getFullYear()
           } else {
             endMonth = dates.dateRangeObject.endMonth

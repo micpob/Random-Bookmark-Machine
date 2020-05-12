@@ -1,3 +1,5 @@
+/* import 'months.js' */
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 document.getElementById('extension_version').innerHTML = chrome.runtime.getManifest().version
 
 const openInNewTabToggle = document.getElementById('open_in_new_tab_checkbox')
@@ -77,13 +79,24 @@ useShortcutToggle.addEventListener('change', (e) => {
 )
 
 //Set dates range
-const date = new Date()
-const currentMonth = date.toLocaleString('en-GB', { month: 'long' })
-const endMonths = Array.from(document.getElementById('end_month').options)
-endMonths.map(option => { if (option.value === currentMonth) { option.setAttribute('selected', true) } })
+const startMonthsList = document.getElementById('start_month')
 const startYearsList = document.getElementById('start_year')
+const endMonthsList = document.getElementById('end_month')
 const endYearsList = document.getElementById('end_year')
+
+const date = new Date()
+const currentMonth = date.getMonth()
 const currentYear = date.getFullYear()
+
+const startMonths = Array.from(startMonthsList.options)
+  startMonths.map(option => { 
+  option.innerHTML = months[option.value]
+})
+const endMonths = Array.from(endMonthsList.options)
+  endMonths.map(option => { 
+  option.innerHTML = months[option.value]
+})
+
 const yearsList = Array.from({ length: currentYear - 2007 }, (v, i) => currentYear - i)
 
 for (let i = 0; i < yearsList.length; i++) {
@@ -95,16 +108,20 @@ for(let i = yearsList.length-1; i >= 0; i--) {
 }
 
 chrome.storage.sync.get(['dateRangeObject'], (dates) => {
-  if (dates.dateRangeObject) { 
-    document.getElementById('start_month').value = dates.dateRangeObject.startMonth
-    document.getElementById('start_year').value = dates.dateRangeObject.startYear
-    document.getElementById('end_month').value = dates.dateRangeObject.endMonth.length > 0 ? dates.dateRangeObject.endMonth : currentMonth
-    document.getElementById('end_year').value = dates.dateRangeObject.endYear.length > 0 ? dates.dateRangeObject.endYear : currentYear
-    } else {
-    storeDatesRange()
-    }   
-  }
-)
+  if (dates.dateRangeObject) {
+    startMonthsList.selectedIndex = dates.dateRangeObject.startMonth
+    startYearsList.value = dates.dateRangeObject.startYear
+    const endMonth = dates.dateRangeObject.endMonth === '' ? currentMonth : dates.dateRangeObject.endMonth
+    const endYear = dates.dateRangeObject.endYear.length > 0 ? dates.dateRangeObject.endYear : currentYear
+    endMonthsList.selectedIndex = endMonth
+    endYearsList.value = endYear
+  } else {
+    startMonthsList.selectedIndex = 0
+    startYearsList.selectedIndex = 0
+    endMonthsList.selectedIndex = currentMonth
+    endYearsList.value = currentYear
+  }   
+})
 
 Array.from(document.getElementsByTagName('select')).map(select => {
   select.addEventListener('change', storeDatesRange)
@@ -112,24 +129,29 @@ Array.from(document.getElementsByTagName('select')).map(select => {
 
 document.getElementById('set_to_start_button').addEventListener('click', (e) => {
   e.preventDefault()
-  document.getElementById('start_month').selectedIndex = 0
-  document.getElementById('start_year').selectedIndex = 0
+  startMonthsList.selectedIndex = 0
+  startYearsList.selectedIndex = 0
   storeDatesRange()
 })
 
 document.getElementById('set_to_now_button').addEventListener('click', (e) => {
   e.preventDefault()
-  document.getElementById('end_month').value = currentMonth
-  document.getElementById('end_year').value = currentYear
+  endMonthsList.selectedIndex = currentMonth
+  endYearsList.value = currentYear
   storeDatesRange()
 })
 
 function storeDatesRange () {
-  const startMonth = document.getElementById('start_month').value
-  const startYear = document.getElementById('start_year').value
-  const endYear = currentYear === document.getElementById('end_year').value ? '' : document.getElementById('end_year').value
-  const endMonth = endYear.length > 0 ? document.getElementById('end_month').value : ''
-  
+  const date = new Date()
+  const currentMonth = date.getMonth()
+  const currentYear = date.getFullYear()
+  const startMonth = startMonthsList.selectedIndex
+  const startYear = startYearsList.value
+  const endYear = currentYear == endYearsList.value ? '' : endYearsList.value
+  let endMonth = endMonthsList.selectedIndex
+  if (endYear.length < 1 && currentMonth == endMonth) {
+    endMonth = ''
+  }
   const dateRangeObject = {
     startMonth, startYear, endMonth, endYear
   }
