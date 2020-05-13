@@ -1,5 +1,19 @@
-/* import 'months.js' */
-const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+let language = chrome.i18n.getUILanguage()
+language = language.slice(0,2)
+
+let months
+switch (language) {
+  case 'es':
+    months = monthsLocalizations[language]
+    break
+  case 'it':
+    months = monthsLocalizations[language]
+    break
+  default:
+    months = monthsLocalizations['en']
+    break
+}
+
 document.getElementById('extension_version').innerHTML = chrome.runtime.getManifest().version
 
 const openInNewTabToggle = document.getElementById('open_in_new_tab_checkbox')
@@ -161,8 +175,8 @@ function storeDatesRange () {
 //Filter folders
 const checkAllBox = document.getElementById('check_all_checkbox')
 const checkAllLabelText = document.getElementById('check_all_label_text')
-let selectAllText = 'Select All'
-let deselectAllText = 'Deselect All'
+let selectAllText = chrome.i18n.getMessage('select_all')
+let deselectAllText = chrome.i18n.getMessage('deselect_all')
 
 checkAllBox.addEventListener('change', (e) => {
     let checkboxes = document.getElementsByClassName('folderName')  

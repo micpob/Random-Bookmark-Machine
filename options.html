@@ -13,21 +13,21 @@
   <h1>Random Bookmark Machine <span id="extension_version"></span></h1>
   <div id="on_off_options">
     <div id="open_in_new_tab_container">
-      <h2>Open bookmarks<br>in new tab:</h2>
+      <h2 data-text="open_in_new_tab"></h2>
       <label for="open_in_new_tab_checkbox" id="open_in_new_tab_label">
         <span id="open_in_new_tab_label_text"></span>
         <input type="checkbox" id="open_in_new_tab_checkbox" name="newTab" >
       </label>
     </div>
     <div id="show_notifications_container">
-      <h2>Show bookmarks<br>info notification:</h2>
+      <h2 data-text="show_notification"></h2>
       <label for="show_info_checkbox" id="show_info_label">
         <span id="show_info_label_text"></span>
         <input type="checkbox" id="show_info_checkbox" name="notifications" >
       </label>
     </div>
     <div id="use_shortcut_container">
-      <h2>Use Shortcut<br>Ctrl Shift K:</h2>
+      <h2 data-text="use_shortcut"></h2>
       <label for="use_shortcut_checkbox" id="use_shortcut_label">
         <span id="use_shortcut_label_text"></span>
         <input type="checkbox" id="use_shortcut_checkbox" name="shortcut" >
@@ -36,7 +36,7 @@
   </div>  
   <div id="date_range_container">      
      <form id="start_date_range">
-      <h2>Start date:</h2>
+      <h2 data-text="start_date"></h2>
         <select id="start_month" name="start_month">
           <option value="0"></option>
           <option value="1"></option>
@@ -52,11 +52,11 @@
           <option value="11"></option>
         </select>      
       <select id ="start_year" name="year" class="yearRange"></select>
-      <button id="set_to_start_button">Set to<br />start</button>
+      <button id="set_to_start_button" data-text="set_to_start_btn"></button>
       </form>
 
       <form id="end_date_range">
-        <h2>End date:</h2>
+        <h2 data-text="end_date"></h2>
           <select id="end_month" name="end_month">
             <option value="0"></option>
             <option value="1"></option>
@@ -72,17 +72,19 @@
             <option value="11"></option>
           </select>      
           <select id="end_year" name="year" class="yearRange"></select>
-          <button id="set_to_now_button">Set to<br />now</button> 
+          <button id="set_to_now_button" data-text="set_to_now_btn"></button> 
       </form>
     </div>
 
-    <h2>Select from folders:</h2>
+    <h2 data-text="select_from_folders"></h2>
     <label for="check_all_checkbox" id="check_all_label">
-      <span id="check_all_label_text">Deselect All</span>
+      <span id="check_all_label_text" data-text="select_deselect_all_btn"></span>
       <input type="checkbox" id="check_all_checkbox" name="all" checked>
     </label>
     <form id="folders_list"></form>    
   </main>  
 </body>
+<script src="setTexts.js"></script>
+<script src="months.js"></script>
 <script src="options.js"></script>
 </html>

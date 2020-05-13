@@ -1,0 +1,41 @@
+{
+  "extension_name": {
+    "message": "Random Bookmark Machine"
+  },
+  "extension_description": {
+    "message": "Explore forgotten bookmarks with this highly customizable time machine!"
+  },
+  "open_in_new_tab": {
+    "message": "Open bookmarks<br>in new tab:"
+  },
+  "show_notification": {
+    "message": "Show bookmarks<br>info notification:"
+  },
+  "use_shortcut": {
+    "message": "Use shortcut<br>Ctrl Shift K:"
+  },
+  "start_date": {
+    "message": "Start date:"
+  },
+  "set_to_start_btn": {
+    "message": "Set to<br>start"
+  },
+  "end_date": {
+    "message": "End date:"
+  },
+  "set_to_now_btn": {
+    "message": "Set to<br>now"
+  },
+  "select_from_folders": {
+    "message": "Select from folders:"
+  },
+  "select_deselect_all_btn": {
+    "message": "Deselect All"
+  },
+  "select_all": {
+    "message": "Select All"
+  },
+  "deselect_all": {
+    "message": "Deselect All"
+  }
+}
