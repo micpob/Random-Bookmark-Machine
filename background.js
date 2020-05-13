@@ -1,3 +1,45 @@
+let language = chrome.i18n.getUILanguage()
+language = language.slice(0,2)
+
+const alertMessageNoBookmarks = {
+  en: 'No bookmarks in the selected folders and time range',
+  es: 'Ningún marcador en las carpetas y fechas seleccionadas',
+  it: 'Nessun segnalibro nelle cartelle e intervallo selezionati'
+}
+
+const bookmarkedOnDate = {
+  en: 'Bookmarked on:',
+  es: 'Guardado el:',
+  it: 'Salvato il:'
+}
+
+const savedInFolder = {
+  en: 'In folder:',
+  es: 'En la carpeta:',
+  it: 'Nella cartella:'
+}
+
+let alertMessage
+let bookmarkedOn
+let inFolder
+switch (language) {
+  case 'es':
+    alertMessage = alertMessageNoBookmarks[language]
+    bookmarkedOn = bookmarkedOnDate[language]
+    inFolder = savedInFolder[language]
+    break
+  case 'it':
+    alertMessage = alertMessageNoBookmarks[language]
+    bookmarkedOn = bookmarkedOnDate[language]
+    inFolder = savedInFolder[language]
+    break
+  default:
+    alertMessage = alertMessageNoBookmarks['en']
+    bookmarkedOn = bookmarkedOnDate['en']
+    inFolder = savedInFolder['en']
+    break
+}
+
 let openInNewTab = false
 let showBookmarkInfo = true
 let notificationsTimeout = undefined
@@ -59,7 +101,7 @@ function process_bookmark (bookmarks) {
 function openBookmark () {
   const bookmarkedUrlsArrayLength = bookmarkedUrlsArray.length
   if (bookmarkedUrlsArrayLength < 1) {
-    chrome.runtime.openOptionsPage(() => { alert('No bookmarks in the selected folders and time range') })    
+    chrome.runtime.openOptionsPage(() => { alert(alertMessage) })    
     return
   }
   const randomIndex = Math.floor(Math.random() * bookmarkedUrlsArrayLength)
@@ -75,7 +117,7 @@ function openBookmark () {
     chrome.notifications.create('RandomBookmarkMachineInfo', {   
       type: 'basic', 
       iconUrl: 'Res/Icons/icon48.png', 
-      title: `Bookmarked on: ${randomUrlObject.urlDate} \nIn folder: ${randomUrlObject.urlParentFolder}`, 
+      title: `${bookmarkedOn} ${randomUrlObject.urlDate} \n${inFolder} ${randomUrlObject.urlParentFolder}`, 
       message: ``,
       priority: 1,
       silent: true 
@@ -121,7 +163,7 @@ function getRandomBookmark() {
       }
       chrome.storage.sync.get(['dateRangeObject'], (dates) => {
         if (dates.dateRangeObject) {
-          startDate = new Date(`${dates.dateRangeObject.startMonth} 01 ${dates.dateRangeObject.startYear}`)
+          startDate = new Date(`${dates.dateRangeObject.startMonth + 1} 01 ${dates.dateRangeObject.startYear}`)
           startDate = startDate.getTime()
           let endMonth
           let endYear
