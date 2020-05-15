@@ -1,0 +1,41 @@
+{
+  "extension_name": {
+    "message": "Random Bookmark Machine"
+  },
+  "extension_description": {
+    "message": "Explora los marcadores olvidados con esta máquina del tiempo altamente personalizable!"
+  },
+  "open_in_new_tab": {
+    "message": "Abrir en<br>nueva pestaña:"
+  },
+  "show_notification": {
+    "message": "Notificación<br>info marcadores:"
+  },
+  "use_shortcut": {
+    "message": "Usar atajo<br>Ctrl Mayúsc K:"
+  },
+  "start_date": {
+    "message": "Fecha de inicio:"
+  },
+  "set_to_start_btn": {
+    "message": "Valor<br>base"
+  },
+  "end_date": {
+    "message": "Fecha de finalización:"
+  },
+  "set_to_now_btn": {
+    "message": "Seleccionar<br>hoy"
+  },
+  "select_from_folders": {
+    "message": "Seleccionar de las carpetas:"
+  },
+  "select_deselect_all_btn": {
+    "message": "Deseleccionar todo"
+  },
+  "select_all": {
+    "message": "Seleccionar todo"
+  },
+  "deselect_all": {
+    "message": "Deseleccionar todo"
+  }
+}
