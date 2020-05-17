@@ -1,0 +1,41 @@
+{
+  "extension_name": {
+    "message": "Random Bookmark Machine"
+  },
+  "extension_description": {
+    "message": "Explorez des signets oubliés grâce à cette incroyable machine à remonter le temps!"
+  },
+  "open_in_new_tab": {
+    "message": "Ouvrir signets<br>dans nouvel onglet:"
+  },
+  "show_notification": {
+    "message": "Afficher notification<br>info signets:"
+  },
+  "use_shortcut": {
+    "message": "Utiliser raccourci<br>Ctrl Shift K:"
+  },
+  "start_date": {
+    "message": "Date de début:"
+  },
+  "set_to_start_btn": {
+    "message": "Valeur<br>base"
+  },
+  "end_date": {
+    "message": "Date de fin :"
+  },
+  "set_to_now_btn": {
+    "message": "À<br>present"
+  },
+  "select_from_folders": {
+    "message": "Choisir parmi les dossiers:"
+  },
+  "select_deselect_all_btn": {
+    "message": "Désélectionner Tout"
+  },
+  "select_all": {
+    "message": "Sélectionner Tout"
+  },
+  "deselect_all": {
+    "message": "Désélectionner Tout"
+  }
+}

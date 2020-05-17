@@ -4,19 +4,25 @@ language = language.slice(0,2)
 const alertMessageNoBookmarks = {
   en: 'No bookmarks in the selected folders and time range',
   es: 'Ningún marcador en las carpetas y fechas seleccionadas',
-  it: 'Nessun segnalibro nelle cartelle e intervallo selezionati'
+  it: 'Nessun segnalibro nelle cartelle e intervallo selezionati',
+  fr: 'Pas de signets dans les dossiers et intervalle de temps sélectionnés',
+  pt: 'Sem favoritos nas pastas e intervalo de tempo selecionados'
 }
 
 const bookmarkedOnDate = {
   en: 'Bookmarked on:',
   es: 'Guardado el:',
-  it: 'Salvato il:'
+  it: 'Salvato il:',
+  fr: 'Enregistré le:',
+  pt: 'Salvo no:'
 }
 
 const savedInFolder = {
   en: 'In folder:',
   es: 'En la carpeta:',
-  it: 'Nella cartella:'
+  it: 'Nella cartella:',
+  fr: 'Dans le dossier;',
+  pt: 'Em pasta'
 }
 
 let alertMessage
