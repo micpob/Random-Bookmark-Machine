@@ -12,6 +12,9 @@ switch (language) {
   case 'fr':
     months = monthsLocalizations[language]
     break
+  case 'pt':
+    months = monthsLocalizations[language]
+    break
   default:
     months = monthsLocalizations['en']
     break
