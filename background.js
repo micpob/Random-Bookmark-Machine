@@ -1,51 +1,3 @@
-let language = chrome.i18n.getUILanguage()
-language = language.slice(0,2)
-
-const alertMessageNoBookmarks = {
-  en: 'No bookmarks in the selected folders and time range',
-  es: 'Ningún marcador en las carpetas y fechas seleccionadas',
-  it: 'Nessun segnalibro nelle cartelle e intervallo selezionati',
-  fr: 'Pas de signets dans les dossiers et intervalle de temps sélectionnés',
-  pt: 'Sem favoritos nas pastas e intervalo de tempo selecionados'
-}
-
-const bookmarkedOnDate = {
-  en: 'Bookmarked on:',
-  es: 'Guardado el:',
-  it: 'Salvato il:',
-  fr: 'Enregistré le:',
-  pt: 'Salvo no:'
-}
-
-const savedInFolder = {
-  en: 'In folder:',
-  es: 'En la carpeta:',
-  it: 'Nella cartella:',
-  fr: 'Dans le dossier;',
-  pt: 'Em pasta'
-}
-
-let alertMessage
-let bookmarkedOn
-let inFolder
-switch (language) {
-  case 'es':
-    alertMessage = alertMessageNoBookmarks[language]
-    bookmarkedOn = bookmarkedOnDate[language]
-    inFolder = savedInFolder[language]
-    break
-  case 'it':
-    alertMessage = alertMessageNoBookmarks[language]
-    bookmarkedOn = bookmarkedOnDate[language]
-    inFolder = savedInFolder[language]
-    break
-  default:
-    alertMessage = alertMessageNoBookmarks['en']
-    bookmarkedOn = bookmarkedOnDate['en']
-    inFolder = savedInFolder['en']
-    break
-}
-
 let openInNewTab = false
 let showBookmarkInfo = true
 let notificationsTimeout = undefined
@@ -107,6 +59,7 @@ function process_bookmark (bookmarks) {
 function openBookmark () {
   const bookmarkedUrlsArrayLength = bookmarkedUrlsArray.length
   if (bookmarkedUrlsArrayLength < 1) {
+    const alertMessage = chrome.i18n.getMessage('no_bookmarks_alert') 
     chrome.runtime.openOptionsPage(() => { alert(alertMessage) })    
     return
   }
@@ -119,6 +72,8 @@ function openBookmark () {
     chrome.tabs.update({ url: randomUrl })
   }
   if (showBookmarkInfo) {
+    const bookmarkedOn = chrome.i18n.getMessage('bookmarked_on_date') 
+    const inFolder = chrome.i18n.getMessage('saved_in_folder') 
     chrome.notifications.clear('RandomBookmarkMachineInfo')
     chrome.notifications.create('RandomBookmarkMachineInfo', {   
       type: 'basic', 

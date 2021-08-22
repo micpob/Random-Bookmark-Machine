@@ -37,5 +37,14 @@
   },
   "deselect_all": {
     "message": "Deseleccionar todo"
+  },
+  "no_bookmarks_alert": {
+    "message": "Ningún marcador en las carpetas y fechas seleccionadas"
+  },
+  "bookmarked_on_date": {
+    "message": "Guardado el:"
+  },
+  "saved_in_folder": {
+    "message": "En la carpeta:"
   }
 }

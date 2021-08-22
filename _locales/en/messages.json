@@ -37,5 +37,14 @@
   },
   "deselect_all": {
     "message": "Deselect All"
+  },
+  "no_bookmarks_alert": {
+    "message": "No bookmarks in the selected folders and time range"
+  },
+  "bookmarked_on_date": {
+    "message": "Bookmarked on:"
+  },
+  "saved_in_folder": {
+    "message": "In folder:"
   }
 }

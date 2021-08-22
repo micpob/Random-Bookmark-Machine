@@ -37,5 +37,14 @@
   },
   "deselect_all": {
     "message": "Deseleziona tutto"
+  },
+  "no_bookmarks_alert": {
+    "message": "Nessun segnalibro nelle cartelle e intervallo selezionati"
+  },
+  "bookmarked_on_date": {
+    "message": "Salvato il:"
+  },
+  "saved_in_folder": {
+    "message": "Nella cartella:"
   }
 }

@@ -37,5 +37,14 @@
   },
   "deselect_all": {
     "message": "Désélectionner Tout"
+  },
+  "no_bookmarks_alert": {
+    "message": "Pas de signets dans les dossiers et intervalle de temps sélectionnés"
+  },
+  "bookmarked_on_date": {
+    "message": "Enregistré le:"
+  },
+  "saved_in_folder": {
+    "message": "Dans:"
   }
 }
