@@ -133,10 +133,11 @@ function getRandomBookmark() {
             endMonth = date.getMonth()
             endYear = date.getFullYear()
           } else {
+            const date = new Date()
             endMonth = dates.dateRangeObject.endMonth
-            endYear = dates.dateRangeObject.endYear
+            endYear = dates.dateRangeObject.endYear.length < 1 ? date.getFullYear() : dates.dateRangeObject.endYear 
           }
-          endDate = new Date(`${endMonth} 01 ${endYear}`)
+          endDate = new Date(`${endMonth + 1} 01 ${endYear}`)
           endDate.setMonth(endDate.getMonth() + 1, 1)
           endDate = endDate.getTime()
         } else {
@@ -144,7 +145,7 @@ function getRandomBookmark() {
           endDate = new Date()
           endDate.setMonth(endDate.getMonth() + 1, 1)
           endDate = endDate.getTime()
-        }        
+        }      
         chrome.storage.sync.get(['excludedFolders'], (folderList) => {
           if (folderList.excludedFolders) {
             excludedFolders = folderList.excludedFolders
