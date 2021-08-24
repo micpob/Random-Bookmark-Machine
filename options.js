@@ -1,24 +1,15 @@
 let language = chrome.i18n.getUILanguage()
 language = language.slice(0,2)
 
-let months
-switch (language) {
-  case 'es':
-    months = monthsLocalizations[language]
-    break
-  case 'it':
-    months = monthsLocalizations[language]
-    break
-  case 'fr':
-    months = monthsLocalizations[language]
-    break
-  case 'pt':
-    months = monthsLocalizations[language]
-    break
-  default:
-    months = monthsLocalizations['en']
-    break
+const monthsLocalizations = {
+  en: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+  es: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+  it: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
+  fr: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+  pt: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
 }
+
+let months = monthsLocalizations[language]
 
 document.getElementById('extension_version').innerHTML = chrome.runtime.getManifest().version
 
