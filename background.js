@@ -11,7 +11,7 @@ let excludedFolders = []
 
 let recursionCounter = 0
 
-function process_bookmark (bookmarks) {
+const process_bookmark = (bookmarks) => {
 
   recursionCounter++
   
@@ -56,7 +56,7 @@ function process_bookmark (bookmarks) {
   }
 }
 
-function openBookmark () {
+const openBookmark = () => {
   const bookmarkedUrlsArrayLength = bookmarkedUrlsArray.length
   if (bookmarkedUrlsArrayLength < 1) {
     const alertMessage = chrome.i18n.getMessage('no_bookmarks_alert') 
@@ -94,7 +94,7 @@ function openBookmark () {
   bookmarkedUrlsArray.length = 0
 }
 
-chrome.commands.onCommand.addListener(function (command) {
+chrome.commands.onCommand.addListener( (command) => {
   if (command === "get_random_bookmark") {
     chrome.storage.sync.get('useShortcut', (status) => {
       if (status.useShortcut && status.useShortcut === 'on') {        
@@ -108,7 +108,7 @@ chrome.browserAction.onClicked.addListener( () => {
   getRandomBookmark()
 })
 
-function getRandomBookmark() {
+const getRandomBookmark = () => {
   bookmarkedUrlsArray.length = 0
   chrome.storage.sync.get('openInNewTab', (status) => {
     if (status.openInNewTab && status.openInNewTab === 'on') {

@@ -135,7 +135,7 @@ chrome.storage.sync.get(['dateRangeObject'], (dates) => {
 })
 
 Array.from(document.getElementsByTagName('select')).map(select => {
-  select.addEventListener('change', storeDatesRange)
+  select.addEventListener('change', () => { storeDatesRange() })
 })
 
 document.getElementById('set_to_start_button').addEventListener('click', (e) => {
@@ -152,7 +152,7 @@ document.getElementById('set_to_now_button').addEventListener('click', (e) => {
   storeDatesRange()
 })
 
-function storeDatesRange () {
+const storeDatesRange = () => {
   const date = new Date()
   const currentMonth = date.getMonth()
   const currentYear = date.getFullYear()
@@ -192,7 +192,7 @@ checkAllBox.addEventListener('change', (e) => {
   }
 )
 
-function process_bookmark (bookmarks) {  
+const process_bookmark = (bookmarks) => {  
   for (let i=0; i < bookmarks.length; i++) {
     
     let bookmark = bookmarks[i];
@@ -206,7 +206,7 @@ function process_bookmark (bookmarks) {
   }
 }
 
-function modifyFoldersList () {
+const modifyFoldersList = () => {
   let checkboxes = document.getElementsByClassName('folderName')
   checkboxes = Array.from(checkboxes)
   const checkboxesChecked = checkboxes.filter(checkbox => checkbox.checked === true)
@@ -217,7 +217,7 @@ function modifyFoldersList () {
   chrome.storage.sync.set({ excludedFolders: folderToExcludeIds })
 }
 
-function addElementsToList (bookmark) {  
+const addElementsToList = (bookmark) => {  
   let checkbox = document.createElement("input")
   checkbox.type = "checkbox"
   checkbox.checked = true
@@ -225,7 +225,7 @@ function addElementsToList (bookmark) {
   checkbox.value = bookmark.id
   checkbox.id = 'checkbox' + bookmark.id
   checkbox.classList.add('folderName')
-  checkbox.addEventListener('change', modifyFoldersList)
+  checkbox.addEventListener('change', () => { modifyFoldersList() })
 
   chrome.storage.sync.get(['excludedFolders'], (folderList) => {
    if (folderList.excludedFolders && folderList.excludedFolders.includes(bookmark.id)) { 
