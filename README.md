@@ -1,6 +1,6 @@
 # Random Bookmark Machine
 
-This Chrome extension adds a Toolbar button that, when clicked,  opens **a random website** from your bookmarks list.
+This Chrome extension adds a button to your Toolbar that, every time is clicked, opens **a random website** from your bookmarks list.
 
 <br>
 <div align="center" >
