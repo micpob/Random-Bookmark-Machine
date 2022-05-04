@@ -1,7 +1,7 @@
 {
   "name": "__MSG_extension_name__",
   "short_name": "RndBkMch",
-  "version": "1.7",
+  "version": "1.8",
   "content_security_policy": "default-src 'self'",
   "description": "__MSG_extension_description__",
   "manifest_version": 2,
@@ -15,7 +15,7 @@
   "background": {
     "scripts": ["background.js"]
   },
-  "permissions": ["storage", "bookmarks", "notifications", "tabs"],
+  "permissions": ["storage", "bookmarks", "notifications"],
   "options_ui": {
     "page": "options.html"
   },
