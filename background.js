@@ -104,7 +104,7 @@ chrome.commands.onCommand.addListener( (command) => {
   }     
 })
 
-chrome.browserAction.onClicked.addListener( () => {
+chrome.action.onClicked.addListener( () => {
   getRandomBookmark()
 })
 
