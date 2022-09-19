@@ -156,3 +156,49 @@ const getRandomBookmark = () => {
     })
   }) 
 }
+
+
+
+
+chrome.runtime.onInstalled.addListener((details) => {
+  /* const currentVersion = chrome.runtime.getManifest().version
+  const previousVersion = details.previousVersion */
+  const reason = details.reason
+
+  switch (reason) {
+     case 'install':
+        chrome.storage.local.set({
+          "excludedFolders": [],
+          "openInNewTab": false,
+          "allBookmarks": [],
+          "showInfo": true,
+          "useShortcut": false,
+          "dateRangeObject": {"endMonth" : "", "endYear" : "", "startMonth" : 0, "startYear" : "2008"}
+        })
+        break;
+     case 'update':
+        chrome.storage.sync.get(['excludedFolders', 'openInNewTab'], (result) => {
+          let excludedFolders = result.excludedFolders ? result.excludedFolders : []
+          let openInNewTab = result.openInNewTab ? result.openInNewTab : false
+          let showInfo = result.showInfo ? result.showInfo : true
+          let useShortcut = result.useShortcut ? result.useShortcut : false
+          let dateRangeObject = result.dateRangeObject ? result.dateRangeObject : {"endMonth" : "", "endYear" : "", "startMonth" : 0, "startYear" : "2008"}
+          chrome.storage.local.set({
+            "excludedFolders": excludedFolders,
+            "openInNewTab": openInNewTab,
+            "showInfo": showInfo,
+            "useShortcut": useShortcut,
+            "dateRangeObject": dateRangeObject
+          })
+        })
+        break;
+     case 'chrome_update':
+        break;
+     case 'shared_module_update':
+        break;
+     default:
+        
+        break;
+  }
+
+})
