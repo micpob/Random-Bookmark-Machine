@@ -18,8 +18,8 @@ const openInNewTabToggleLabel = document.getElementById('open_in_new_tab_label')
 const openInNewTabToggleLabelText = document.getElementById('open_in_new_tab_label_text')
 
 //Options buttons
-chrome.storage.sync.get('openInNewTab', (status) => {
-  if (status.openInNewTab && status.openInNewTab === 'on') {
+chrome.storage.local.get('openInNewTab', (status) => {
+  if (status.openInNewTab) {
     openInNewTabToggleLabelText.innerText = 'ON'
     openInNewTabToggle.checked = true
   } else {
@@ -30,10 +30,10 @@ chrome.storage.sync.get('openInNewTab', (status) => {
 
 openInNewTabToggle.addEventListener('change', (e) => {
     if (e.target.checked) {
-      chrome.storage.sync.set({ 'openInNewTab': 'on' })  
+      chrome.storage.local.set({ 'openInNewTab': true })  
       openInNewTabToggleLabelText.innerText = 'ON'
     } else {
-      chrome.storage.sync.set({ 'openInNewTab': 'off' })  
+      chrome.storage.local.set({ 'openInNewTab': false })  
       openInNewTabToggleLabelText.innerText = 'OFF'
     }
   }
@@ -43,22 +43,23 @@ const showInfoToggle = document.getElementById('show_info_checkbox')
 const showInfoToggleLabel = document.getElementById('show_info_label')
 const showInfoToggleLabelText = document.getElementById('show_info_label_text')
 
-chrome.storage.sync.get('showInfo', (status) => {
-  if (status.showInfo && status.showInfo === 'off') {
-    showInfoToggleLabelText.innerText = 'OFF'
-    showInfoToggle.checked = false
-  } else {
+chrome.storage.local.get('showInfo', (status) => {
+  console.log(status.showInfo)
+  if (status.showInfo) {
     showInfoToggleLabelText.innerText = 'ON'
     showInfoToggle.checked = true
+  } else {
+    showInfoToggleLabelText.innerText = 'OFF'
+    showInfoToggle.checked = false
   }
 })
 
 showInfoToggle.addEventListener('change', (e) => {
     if (e.target.checked) {
-      chrome.storage.sync.set({ 'showInfo': 'on' })  
+      chrome.storage.local.set({ 'showInfo': true })  
       showInfoToggleLabelText.innerText = 'ON'
     } else {
-      chrome.storage.sync.set({ 'showInfo': 'off' })  
+      chrome.storage.local.set({ 'showInfo': false })  
       showInfoToggleLabelText.innerText = 'OFF'
     }
   }
@@ -68,8 +69,8 @@ const useShortcutToggle = document.getElementById('use_shortcut_checkbox')
 const useShortcutToggleLabel = document.getElementById('use_shortcut_label')
 const useShortcutToggleLabelText = document.getElementById('use_shortcut_label_text')
 
-chrome.storage.sync.get('useShortcut', (status) => {
-  if (status.useShortcut && status.useShortcut === 'on') {
+chrome.storage.local.get('useShortcut', (status) => {
+  if (status.useShortcut) {
     useShortcutToggleLabelText.innerText = 'ON'
     useShortcutToggle.checked = true
   } else {
@@ -80,10 +81,10 @@ chrome.storage.sync.get('useShortcut', (status) => {
 
 useShortcutToggle.addEventListener('change', (e) => {
     if (e.target.checked) {
-      chrome.storage.sync.set({ 'useShortcut': 'on' })  
+      chrome.storage.local.set({ 'useShortcut': true })  
       useShortcutToggleLabelText.innerText = 'ON'
     } else {
-      chrome.storage.sync.set({ 'useShortcut': 'off' })  
+      chrome.storage.local.set({ 'useShortcut': false })  
       useShortcutToggleLabelText.innerText = 'OFF'
     }
   }
@@ -118,7 +119,7 @@ for(let i = yearsList.length-1; i >= 0; i--) {
   startYearsList.options.add(new Option(yearsList[i], yearsList[i]))
 }
 
-chrome.storage.sync.get(['dateRangeObject'], (dates) => {
+chrome.storage.local.get(['dateRangeObject'], (dates) => {
   if (dates.dateRangeObject) {
     startMonthsList.selectedIndex = dates.dateRangeObject.startMonth
     startYearsList.value = dates.dateRangeObject.startYear
@@ -166,7 +167,7 @@ const storeDatesRange = () => {
   const dateRangeObject = {
     startMonth, startYear, endMonth, endYear
   }
-  chrome.storage.sync.set({ dateRangeObject: dateRangeObject })      
+  chrome.storage.local.set({ dateRangeObject: dateRangeObject })      
 }
 
 //Filter folders
@@ -214,7 +215,7 @@ const modifyFoldersList = () => {
   const checkboxesUnchecked = checkboxes.filter(checkbox => checkbox.checked === false)
   checkboxesUnchecked.length > 0 ? (checkAllBox.checked = false, checkAllLabelText.innerText = selectAllText) : (checkAllBox.checked = true, checkAllLabelText.innerText = deselectAllText)
   const folderToExcludeIds = checkboxesUnchecked.map(checkbox => { checkbox.parentElement.style.opacity = '0.5'; return checkbox.value })
-  chrome.storage.sync.set({ excludedFolders: folderToExcludeIds })
+  chrome.storage.local.set({ excludedFolders: folderToExcludeIds })
 }
 
 const addElementsToList = (bookmark) => {  
@@ -227,7 +228,7 @@ const addElementsToList = (bookmark) => {
   checkbox.classList.add('folderName')
   checkbox.addEventListener('change', () => { modifyFoldersList() })
 
-  chrome.storage.sync.get(['excludedFolders'], (folderList) => {
+  chrome.storage.local.get(['excludedFolders'], (folderList) => {
    if (folderList.excludedFolders && folderList.excludedFolders.includes(bookmark.id)) { 
      checkbox.checked = false
      checkbox.parentElement.style.opacity = '0.5'
