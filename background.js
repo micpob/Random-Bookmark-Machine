@@ -70,6 +70,7 @@ const buildStorageBookmarksArray = async (bookmarks) => {
         chrome.bookmarks.getSubTree( bookmark.parentId, result => {
           const folderTitle = result[0].title
           const bookmarkObject = {
+            id: bookmark.id,
             url: bookmark.url,
             urlDate: bookmark.dateAdded,
             parentFolderTitle: folderTitle,
