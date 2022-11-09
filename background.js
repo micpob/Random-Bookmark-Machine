@@ -51,22 +51,13 @@ const buildStorageBookmarksArray = async (bookmarks) => {
 
   const allBookmarksArray = []
 
-  //let recursionCounter = 0
-
   const processBookmarks = (arrayOfBookmarks) => {
-    //recursionCounter++
 
     for (let i=0; i < arrayOfBookmarks.length; i++) {   
 
       let bookmark = arrayOfBookmarks[i]
   
-      console.log('processing bookmarks...')
-      //console.log('recursion counter:', recursionCounter)
-      //console.log('allBookmarksArray:', allBookmarksArray)
-      
       if (bookmark.url) {
-        console.log('bookmark:', bookmark)
-        //const dateAdded = new Date(bookmark.dateAdded).toLocaleDateString('default', { year: 'numeric', month: 'long', day: 'numeric' })
         chrome.bookmarks.getSubTree( bookmark.parentId, result => {
           const folderTitle = result[0].title
           const bookmarkObject = {
@@ -87,16 +78,7 @@ const buildStorageBookmarksArray = async (bookmarks) => {
   
     }
   
-    //recursionCounter--
   }
-
-  /* if (recursionCounter === 0) {
-    chrome.storage.local.get({allBookmarks: []}, (result) => {
-      var allBookmarks = allBookmarksArray;
-      chrome.storage.local.set({allBookmarks: allBookmarks}, () => {
-      });
-    });
-  } */
 
   processBookmarks(bookmarks)
 }
@@ -119,8 +101,6 @@ const openRandomBookmark = () => {
       const dateRangeObject = result.dateRangeObject
       const excludedFolders = result.excludedFolders
 
-      //console.log(openInNewTab, showInfo, dateRangeObject, excludedFolders)
-
       let startDate = new Date(`${dateRangeObject.startMonth + 1} 01 ${dateRangeObject.startYear}`)
       startDate = startDate.getTime()
       let endMonth
@@ -139,8 +119,6 @@ const openRandomBookmark = () => {
       endDate = endDate.getTime()
 
       const filteredBookmarks = allBookmarks.filter( bookmark => !excludedFolders.includes(bookmark.parentFolderId) && bookmark.urlDate >= startDate && bookmark.urlDate <= endDate )
-
-      //console.log('filteredBookmarks:', filteredBookmarks)
 
       const randomIndex = Math.floor(Math.random() * filteredBookmarks.length)
       const randomUrlObject = filteredBookmarks[randomIndex]
@@ -180,10 +158,35 @@ chrome.action.onClicked.addListener(() => { openRandomBookmark() })
 
 chrome.bookmarks.onChanged.addListener(() => { chrome.bookmarks.getTree( buildStorageBookmarksArray ) })
 chrome.bookmarks.onChildrenReordered.addListener(() => { chrome.bookmarks.getTree( buildStorageBookmarksArray ) })
-chrome.bookmarks.onCreated.addListener(() => { chrome.bookmarks.getTree( buildStorageBookmarksArray ) })
+chrome.bookmarks.onCreated.addListener((newBookmarkId, newBookmark) => { 
+  chrome.storage.local.get({allBookmarks: []}, (result) => {
+    const allBookmarksArray = result.allBookmarks
+    console.log('newBookmark:', newBookmark)
+    chrome.bookmarks.getSubTree( newBookmark.parentId, result => {
+      const folderTitle = result[0].title
+      const bookmarkObject = {
+        id: newBookmark.id,
+        url: newBookmark.url,
+        urlDate: newBookmark.dateAdded,
+        parentFolderTitle: folderTitle,
+        parentFolderId: newBookmark.parentId
+      } 
+      allBookmarksArray.push(bookmarkObject)
+      chrome.storage.local.set({allBookmarks: allBookmarksArray})
+    })
+  })
+ })
 chrome.bookmarks.onImportEnded.addListener(() => { chrome.bookmarks.getTree( buildStorageBookmarksArray ) })
 chrome.bookmarks.onMoved.addListener(() => { chrome.bookmarks.getTree( buildStorageBookmarksArray ) })
-chrome.bookmarks.onRemoved.addListener(() => { chrome.bookmarks.getTree( buildStorageBookmarksArray ) })
+chrome.bookmarks.onRemoved.addListener((RemovedBookmarkId) => { chrome.bookmarks.getTree( buildStorageBookmarksArray ) })
+/* chrome.bookmarks.onRemoved.addListener((RemovedBookmarkId) => { 
+  chrome.storage.local.get({allBookmarks: []}, (result) => {
+    const oldArray = result.allBookmarks
+    const newArray = oldArray.filter(arrayObject => arrayObject.id !== RemovedBookmarkId)
+    chrome.storage.local.set({allBookmarks: newArray})
+  })
+ }
+) */
 
 //TODO: fix keyboard shortcut for v3
 chrome.commands.onCommand.addListener( (command) => {
