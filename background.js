@@ -156,8 +156,30 @@ const openRandomBookmark = () => {
 
 chrome.action.onClicked.addListener(() => { openRandomBookmark() })
 
-chrome.bookmarks.onChanged.addListener(() => { chrome.bookmarks.getTree( buildStorageBookmarksArray ) })
-chrome.bookmarks.onChildrenReordered.addListener(() => { chrome.bookmarks.getTree( buildStorageBookmarksArray ) })
+chrome.bookmarks.onChanged.addListener((changedBookmarkId, changeInfo) => {
+  if (!changeInfo.url && changeInfo.title) {
+    chrome.storage.local.get({allBookmarks: []}, (result) => {
+      const oldArray = result.allBookmarks
+      const newArray = oldArray.map(arrayObject => { 
+        return arrayObject.parentFolderId === changedBookmarkId ? 
+        {...arrayObject, parentFolderTitle: changeInfo.title} 
+        :
+        arrayObject
+      })
+      chrome.storage.local.set({allBookmarks: newArray})
+    })
+  } else if (changeInfo.url) {
+    chrome.storage.local.get({allBookmarks: []}, (result) => {
+      const allBookmarksArray = result.allBookmarks
+      const targetIndex = allBookmarksArray.findIndex(bookmark => bookmark.id === changedBookmarkId)
+      allBookmarksArray[targetIndex].url = changeInfo.url
+      chrome.storage.local.set({allBookmarks: allBookmarksArray})
+    })
+  }
+})
+
+//chrome.bookmarks.onChildrenReordered.addListener(() => { chrome.bookmarks.getTree( buildStorageBookmarksArray ) })
+
 chrome.bookmarks.onCreated.addListener((newBookmarkId, newBookmark) => { 
   chrome.storage.local.get({allBookmarks: []}, (result) => {
     const allBookmarksArray = result.allBookmarks
