@@ -18,7 +18,7 @@
     "message": "Date de début:"
   },
   "set_to_start_btn": {
-    "message": "Valeur<br>base"
+    "message": "Réinitialiser"
   },
   "end_date": {
     "message": "Date de fin :"

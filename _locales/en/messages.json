@@ -18,7 +18,7 @@
     "message": "Start date:"
   },
   "set_to_start_btn": {
-    "message": "Set to<br>start"
+    "message": "Reset"
   },
   "end_date": {
     "message": "End date:"

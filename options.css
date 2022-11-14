@@ -50,6 +50,7 @@ h1 {
 #date_range_container button {
   background-color: #AAAAAA;
   vertical-align: middle;
+  min-height: 46px;
 } 
 
 #date_range_container button:hover {
