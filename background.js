@@ -181,6 +181,7 @@ chrome.bookmarks.onChanged.addListener((changedBookmarkId, changeInfo) => {
 //chrome.bookmarks.onChildrenReordered.addListener(() => { chrome.bookmarks.getTree( buildStorageBookmarksArray ) })
 
 chrome.bookmarks.onCreated.addListener((newBookmarkId, newBookmark) => { 
+  if (!newBookmark.url) return
   chrome.storage.local.get({allBookmarks: []}, (result) => {
     const allBookmarksArray = result.allBookmarks
     console.log('newBookmark:', newBookmark)
