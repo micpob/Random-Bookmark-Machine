@@ -202,6 +202,21 @@ chrome.bookmarks.onCreated.addListener((newBookmarkId, newBookmark) => {
 
 //chrome.bookmarks.onImportEnded.addListener(() => { chrome.bookmarks.getTree( buildStorageBookmarksArray ) })
 
+chrome.bookmarks.onMoved.addListener((movedBookmarkId, newBookmark) => { 
+  if (newBookmark.oldParentId === newBookmark.parentId) return
+  chrome.storage.local.get({allBookmarks: []}, (result) => {
+    const allBookmarksArray = result.allBookmarks
+    const targetIndex = allBookmarksArray.findIndex(bookmark => bookmark.id === movedBookmarkId)
+    chrome.bookmarks.getSubTree( newBookmark.parentId, result => {
+      const folderTitle = result[0].title
+      allBookmarksArray[targetIndex].parentFolderTitle = folderTitle
+      allBookmarksArray[targetIndex].parentFolderId = newBookmark.parentId
+      //console.log('moved bookmark:', allBookmarksArray[targetIndex])
+      chrome.storage.local.set({allBookmarks: allBookmarksArray})
+    })
+  })  
+})
+
   chrome.storage.local.get({allBookmarks: []}, (result) => {
     const oldArray = result.allBookmarks
     const newArray = oldArray.filter(arrayObject => arrayObject.id !== RemovedBookmarkId)
