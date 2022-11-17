@@ -199,10 +199,9 @@ chrome.bookmarks.onCreated.addListener((newBookmarkId, newBookmark) => {
     })
   })
  })
-chrome.bookmarks.onImportEnded.addListener(() => { chrome.bookmarks.getTree( buildStorageBookmarksArray ) })
-chrome.bookmarks.onMoved.addListener(() => { chrome.bookmarks.getTree( buildStorageBookmarksArray ) })
-chrome.bookmarks.onRemoved.addListener((RemovedBookmarkId) => { chrome.bookmarks.getTree( buildStorageBookmarksArray ) })
-/* chrome.bookmarks.onRemoved.addListener((RemovedBookmarkId) => { 
+
+//chrome.bookmarks.onImportEnded.addListener(() => { chrome.bookmarks.getTree( buildStorageBookmarksArray ) })
+
   chrome.storage.local.get({allBookmarks: []}, (result) => {
     const oldArray = result.allBookmarks
     const newArray = oldArray.filter(arrayObject => arrayObject.id !== RemovedBookmarkId)
