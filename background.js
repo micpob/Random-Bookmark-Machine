@@ -53,6 +53,8 @@ const buildStorageBookmarksArray = async (bookmarks) => {
 
   const processBookmarks = (arrayOfBookmarks) => {
 
+    console.log('processing bookmark')
+
     for (let i=0; i < arrayOfBookmarks.length; i++) {   
 
       let bookmark = arrayOfBookmarks[i]
@@ -184,7 +186,6 @@ chrome.bookmarks.onCreated.addListener((newBookmarkId, newBookmark) => {
   if (!newBookmark.url) return
   chrome.storage.local.get({allBookmarks: []}, (result) => {
     const allBookmarksArray = result.allBookmarks
-    console.log('newBookmark:', newBookmark)
     chrome.bookmarks.getSubTree( newBookmark.parentId, result => {
       const folderTitle = result[0].title
       const bookmarkObject = {
@@ -217,13 +218,23 @@ chrome.bookmarks.onMoved.addListener((movedBookmarkId, newBookmark) => {
   })  
 })
 
-  chrome.storage.local.get({allBookmarks: []}, (result) => {
-    const oldArray = result.allBookmarks
-    const newArray = oldArray.filter(arrayObject => arrayObject.id !== RemovedBookmarkId)
-    chrome.storage.local.set({allBookmarks: newArray})
-  })
- }
-) */
+chrome.bookmarks.onRemoved.addListener((removedBookmarkId, removeInfo) => { 
+  if(removeInfo.node.children) { 
+    const idsToRemove = removeInfo.node.children.map(url => url.id)
+    chrome.storage.local.get({allBookmarks: []}, (result) => {
+      const oldArray = result.allBookmarks
+      const newArray = oldArray.filter(arrayObject => !idsToRemove.includes(arrayObject.id))
+      chrome.storage.local.set({allBookmarks: newArray})
+    })
+  }
+  if(removeInfo.node.url) { 
+    chrome.storage.local.get({allBookmarks: []}, (result) => {
+      const oldArray = result.allBookmarks
+      const newArray = oldArray.filter(arrayObject => arrayObject.id !== removedBookmarkId)
+      chrome.storage.local.set({allBookmarks: newArray})
+    })
+  }
+})
 
 //TODO: fix keyboard shortcut for v3
 chrome.commands.onCommand.addListener( (command) => {
