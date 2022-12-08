@@ -44,7 +44,6 @@ const showInfoToggleLabel = document.getElementById('show_info_label')
 const showInfoToggleLabelText = document.getElementById('show_info_label_text')
 
 chrome.storage.local.get('showInfo', (status) => {
-  console.log(status.showInfo)
   if (status.showInfo) {
     showInfoToggleLabelText.innerText = 'ON'
     showInfoToggle.checked = true
