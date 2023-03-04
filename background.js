@@ -53,7 +53,7 @@ const buildStorageBookmarksArray = async (bookmarks) => {
 
   const processBookmarks = (arrayOfBookmarks) => {
 
-    console.log('processing bookmark')
+    //console.log('processing bookmark')
 
     for (let i=0; i < arrayOfBookmarks.length; i++) {   
 
@@ -89,11 +89,10 @@ const openRandomBookmark = () => {
   chrome.storage.local.get('allBookmarks', (result) => {
     
     const allBookmarks = result.allBookmarks
-    console.log(allBookmarks)
+    //console.log(allBookmarks)
 
     if (allBookmarks.length < 1) {
-      const alertMessage = chrome.i18n.getMessage('no_bookmarks_alert') 
-      chrome.runtime.openOptionsPage(() => { /* NOT WORKING ANYMORE IN v3 alert(alertMessage) */ })    
+      noResults()
       return
     }
   
@@ -121,6 +120,11 @@ const openRandomBookmark = () => {
       endDate = endDate.getTime()
 
       const filteredBookmarks = allBookmarks.filter( bookmark => !excludedFolders.includes(bookmark.parentFolderId) && bookmark.urlDate >= startDate && bookmark.urlDate <= endDate )
+
+      if (filteredBookmarks.length < 1) {
+        noResults()
+        return
+      }
 
       const randomIndex = Math.floor(Math.random() * filteredBookmarks.length)
       const randomUrlObject = filteredBookmarks[randomIndex]
@@ -235,6 +239,24 @@ chrome.bookmarks.onRemoved.addListener((removedBookmarkId, removeInfo) => {
     })
   }
 })
+
+const noResults = () => {
+  //console.log('NO RESULTS')
+  chrome.runtime.openOptionsPage(() => { 
+    const options = {
+      type: 'basic',
+      iconUrl: 'Res/Icons/icon48.png',
+      title: '',
+      message: chrome.i18n.getMessage('no_bookmarks_alert'),
+      requireInteraction: true,
+      priority: 2
+    }
+    chrome.notifications.create('noResultsNotification', options, () => {
+      //chrome.notifications.onClicked.addListener(clearAllNotifications)
+      //chrome.notifications.onClosed.addListener(clearAllNotifications)
+    })  
+  })
+}
 
 //TODO: fix keyboard shortcut for v3
 chrome.commands.onCommand.addListener( (command) => {
