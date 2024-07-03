@@ -12,7 +12,7 @@
     "message": "Show bookmarks<br>info notification:"
   },
   "use_shortcut": {
-    "message": "Use shortcut<br>Ctrl Shift K:"
+    "message": "Set keyboard<br>shortcut"
   },
   "start_date": {
     "message": "Start date:"

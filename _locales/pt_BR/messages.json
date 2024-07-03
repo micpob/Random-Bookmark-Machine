@@ -9,10 +9,10 @@
     "message": "Abrir em<br>nova aba:"
   },
   "show_notification": {
-    "message": "Notificación <br>info Favoritos:"
+    "message": "Notificación <br>info Marcadores:"
   },
   "use_shortcut": {
-    "message": "Usar atalho<br>Ctrl Shift K:"
+    "message": "Definir<br>atalho de<br>teclado"
   },
   "start_date": {
     "message": "Data de início:"

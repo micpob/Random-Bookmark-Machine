@@ -28,13 +28,5 @@
       "48": "Res/Icons/icon48.png",
       "128": "Res/Icons/icon128.png"
     }
-  },
-  "commands": {
-    "get_random_bookmark": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+K"
-      },
-      "description": "Open random bookmark"
-    }
   }
 }

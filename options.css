@@ -132,3 +132,17 @@ body::-webkit-scrollbar-thumb {
     margin-top: 7px;
   } 
 }
+
+#use_shortcut_container {
+  display: flex;
+}
+
+#use_shortcut_button, #refresh_bookmarks_list_button {
+  margin: auto;
+  margin-bottom: 10px;
+  width: auto;
+  padding: 20px;
+  cursor: pointer;
+}
+
+#refresh_bookmarks_list_container {

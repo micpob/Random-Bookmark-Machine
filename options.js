@@ -64,30 +64,9 @@ showInfoToggle.addEventListener('change', (e) => {
   }
 )
 
-const useShortcutToggle = document.getElementById('use_shortcut_checkbox')
-const useShortcutToggleLabel = document.getElementById('use_shortcut_label')
-const useShortcutToggleLabelText = document.getElementById('use_shortcut_label_text')
-
-chrome.storage.local.get('useShortcut', (status) => {
-  if (status.useShortcut) {
-    useShortcutToggleLabelText.innerText = 'ON'
-    useShortcutToggle.checked = true
-  } else {
-    useShortcutToggleLabelText.innerText = 'OFF'
-    useShortcutToggle.checked = false
-  }
-})
-
-useShortcutToggle.addEventListener('change', (e) => {
-    if (e.target.checked) {
-      chrome.storage.local.set({ 'useShortcut': true })  
-      useShortcutToggleLabelText.innerText = 'ON'
-    } else {
-      chrome.storage.local.set({ 'useShortcut': false })  
-      useShortcutToggleLabelText.innerText = 'OFF'
-    }
-  }
-)
+//open page to set keyboard shortcut
+const setShortcutButton = document.getElementById('use_shortcut_button')
+setShortcutButton.addEventListener('click', ()=> { chrome.tabs.create({ url: 'chrome://extensions/shortcuts' }) })
 
 //Set dates range
 const startMonthsList = document.getElementById('start_month')

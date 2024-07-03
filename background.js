@@ -255,20 +255,7 @@ const noResults = () => {
       priority: 2
     }
     chrome.notifications.create('noResultsNotification', options, () => {
-      //chrome.notifications.onClicked.addListener(clearAllNotifications)
       //chrome.notifications.onClosed.addListener(clearAllNotifications)
     })  
   })
 }
-
-//TODO: fix keyboard shortcut for v3
-chrome.commands.onCommand.addListener( (command) => {
-  console.log(command)
-  if (command === "get_random_bookmark") {
-    chrome.storage.sync.get('useShortcut', (result) => {
-      if (result.useShortcut) {        
-        openRandomBookmark()        
-      }
-    }) 
-  }     
-})
