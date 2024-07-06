@@ -46,5 +46,11 @@
   },
   "saved_in_folder": {
     "message": "In folder:"
+  },
+  "refresh_bookmarks_list_button": {
+    "message": "Refresh bookmarks list"
+  },
+  "refresh_button_caption": {
+    "message": "(it may take up to one minute)"
   }
 }

@@ -234,4 +234,86 @@ const addElementsToList = (bookmark) => {
   document.getElementById('folders_list').appendChild(label)
 }
 
+//refresh bookmarks list functionality
+const refreshButtonTextLocalizations = {
+  en: { processing: 'Processing', done: 'DONE!' },
+  es: { processing: 'Procesando', done: 'HECHO!' },
+  it: { processing: 'Processando', done: 'FINITO!' },
+  fr: { processing: 'En cours', done: 'FAIT!' },
+  pt: { processing: 'Processando', done: 'FEITO!' },
+}
+let refreshButtonText = refreshButtonTextLocalizations[language]
+
+const refreshBookmarksListButton = document.getElementById('refresh_bookmarks_list_button')
+const refreshButtonCaption = document.getElementById('refresh_button_caption')
+refreshBookmarksListButton.addEventListener('click', ()=> { chrome.bookmarks.getTree( buildStorageBookmarksArray ) })
+
+const buildStorageBookmarksArray = async (bookmarks) => {
+
+  refreshBookmarksListButton.disabled = true
+  refreshBookmarksListButton.style.backgroundColor = 'red'
+  refreshButtonCaption.style.color = 'white'
+  refreshBookmarksListButton.innerText = refreshButtonText.processing
+  let arrayOfBookmarksLength = 0
+
+  const recursiveEndChecker = setInterval( ()=> {
+
+    refreshBookmarksListButton.style.color = refreshBookmarksListButton.style.color === 'white' ? 'transparent' : 'white'
+
+    chrome.storage.local.get('allBookmarks', (result) => {
+      const allBookmarks = result.allBookmarks
+
+      if (allBookmarks.length === arrayOfBookmarksLength) {
+        clearInterval(recursiveEndChecker)
+        refreshBookmarksListButton.style.color = 'white'
+        refreshBookmarksListButton.innerText = refreshButtonText.done
+        refreshBookmarksListButton.style.backgroundColor = '#02a802'
+        refreshButtonCaption.style.color = 'transparent'
+        setTimeout(() => {
+          location.reload()
+          window.scrollTo(0, 9999);
+        }, 1500);
+      } else {
+        arrayOfBookmarksLength = allBookmarks.length
+      }
+    }) 
+
+  }, 1000)
+
+  const allBookmarksArray = []
+
+  const processBookmarks = (arrayOfBookmarks) => {
+
+    if (arrayOfBookmarks.length < 1) { chrome.storage.local.set({allBookmarks: []}, () => { }) }
+
+    for (let i=0; i < arrayOfBookmarks.length; i++) {   
+
+      let bookmark = arrayOfBookmarks[i]
+
+      if (bookmark.url) {
+        chrome.bookmarks.getSubTree( bookmark.parentId, result => {
+          const folderTitle = result[0].title
+          const bookmarkObject = {
+            id: bookmark.id,
+            url: bookmark.url,
+            urlDate: bookmark.dateAdded,
+            parentFolderTitle: folderTitle,
+            parentFolderId: bookmark.parentId
+          } 
+          allBookmarksArray.push(bookmarkObject)
+          chrome.storage.local.set({allBookmarks: allBookmarksArray}, () => { })
+        })    
+      }
+  
+      if (bookmark.children) {
+        processBookmarks(bookmark.children)
+      }
+  
+    }
+  
+  }
+
+  processBookmarks(bookmarks)
+}
+
 chrome.bookmarks.getTree( process_bookmark )

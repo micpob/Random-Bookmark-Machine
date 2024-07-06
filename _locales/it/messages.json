@@ -46,5 +46,11 @@
   },
   "saved_in_folder": {
     "message": "Nella cartella:"
+  },
+  "refresh_bookmarks_list_button": {
+    "message": "Aggiorna lista dei segnalibri"
+  },
+  "refresh_button_caption": {
+    "message": "(può richiedere fino a un minuto)"
   }
 }

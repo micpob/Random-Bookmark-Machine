@@ -39,12 +39,18 @@
     "message": "Desmarcar todos"
   },
   "no_bookmarks_alert": {
-    "message": "Sem favoritos nas pastas e intervalo de tempo selecionados"
+    "message": "Sem marcadores nas pastas e intervalo de tempo selecionados"
   },
   "bookmarked_on_date": {
     "message": "Salvo no:"
   },
   "saved_in_folder": {
     "message": "Em pasta:"
+  },
+  "refresh_bookmarks_list_button": {
+    "message": "Atualizar lista de marcadores"
+  },
+  "refresh_button_caption": {
+    "message": "(pode levar até um minuto)"
   }
 }

@@ -46,5 +46,11 @@
   },
   "saved_in_folder": {
     "message": "En la carpeta:"
+  },
+  "refresh_bookmarks_list_button": {
+    "message": "Actualizar lista de marcadores"
+  },
+  "refresh_button_caption": {
+    "message": "(puede tardar hasta un minuto)"
   }
 }

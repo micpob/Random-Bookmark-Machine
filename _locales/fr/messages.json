@@ -46,5 +46,11 @@
   },
   "saved_in_folder": {
     "message": "Dans:"
+  },
+  "refresh_bookmarks_list_button": {
+    "message": "Actualiser la liste des signets"
+  },
+  "refresh_button_caption": {
+    "message": "(Peut prendre jusqu'à une minute)"
   }
 }

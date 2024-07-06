@@ -42,6 +42,10 @@ h1 {
   text-align: center;
 }
 
+#show_info_label:hover, #open_in_new_tab_label:hover, #use_shortcut_button:hover, #check_all_label:hover, #refresh_bookmarks_list_button:hover {
+  background-color: #00ca00;
+}
+
 #date_range_container {
   display: flex;
   margin: 0 0 50px 0;
@@ -146,3 +150,9 @@ body::-webkit-scrollbar-thumb {
 }
 
 #refresh_bookmarks_list_container {
+  text-align: center;
+}
+
+#refresh_button_caption {
+  color: transparent
+}
