@@ -51,9 +51,18 @@ const buildStorageBookmarksArray = async (bookmarks) => {
 
   const allBookmarksArray = []
 
-  const processBookmarks = (arrayOfBookmarks) => {
+  let arrayOfBookmarksLength = 0
 
-    //console.log('processing bookmark')
+  const recursiveEndChecker = setInterval( ()=> {
+      if (allBookmarksArray.length === arrayOfBookmarksLength) {
+        clearInterval(recursiveEndChecker)
+        chrome.storage.local.set({allBookmarks: allBookmarksArray}, () => {  })
+      } else {
+        arrayOfBookmarksLength = allBookmarksArray.length
+      }
+  }, 250)
+
+  const processBookmarks = (arrayOfBookmarks) => {
 
     for (let i=0; i < arrayOfBookmarks.length; i++) {   
 
@@ -70,7 +79,7 @@ const buildStorageBookmarksArray = async (bookmarks) => {
             parentFolderId: bookmark.parentId
           } 
           allBookmarksArray.push(bookmarkObject)
-          chrome.storage.local.set({allBookmarks: allBookmarksArray}, () => {  });
+          //chrome.storage.local.set({allBookmarks: allBookmarksArray}, () => {  })
         })    
       }
   
@@ -187,7 +196,9 @@ chrome.bookmarks.onChanged.addListener((changedBookmarkId, changeInfo) => {
 //chrome.bookmarks.onChildrenReordered.addListener(() => { chrome.bookmarks.getTree( buildStorageBookmarksArray ) })
 
 chrome.bookmarks.onCreated.addListener((newBookmarkId, newBookmark) => { 
+
   if (!newBookmark.url) return
+
   chrome.storage.local.get({allBookmarks: []}, (result) => {
     const allBookmarksArray = result.allBookmarks
     chrome.bookmarks.getSubTree( newBookmark.parentId, result => {
@@ -205,7 +216,9 @@ chrome.bookmarks.onCreated.addListener((newBookmarkId, newBookmark) => {
   })
  })
 
-//chrome.bookmarks.onImportEnded.addListener(() => { chrome.bookmarks.getTree( buildStorageBookmarksArray ) })
+chrome.bookmarks.onImportBegan.addListener(() => { })
+
+chrome.bookmarks.onImportEnded.addListener(() => { chrome.bookmarks.getTree( buildStorageBookmarksArray ) })
 
 chrome.bookmarks.onMoved.addListener((movedBookmarkId, newBookmark) => { 
   //console.log('newBookmark.url:', newBookmark.url)
@@ -244,7 +257,6 @@ chrome.bookmarks.onRemoved.addListener((removedBookmarkId, removeInfo) => {
 })
 
 const noResults = () => {
-  //console.log('NO RESULTS')
   chrome.runtime.openOptionsPage(() => { 
     const options = {
       type: 'basic',
