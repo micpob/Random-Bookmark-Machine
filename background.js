@@ -8,26 +8,23 @@ chrome.runtime.onInstalled.addListener((details) => {
           "openInNewTab": false,
           "allBookmarks": [],
           "showInfo": true,
-          "useShortcut": false,
           "dateRangeObject": {"endMonth" : "", "endYear" : "", "startMonth" : 0, "startYear" : "2008"}
         }, () => {
           chrome.bookmarks.getTree( buildStorageBookmarksArray )
         })
         break;
      case 'update':
-        chrome.storage.sync.get(['excludedFolders', 'openInNewTab', 'allBookmarks', 'showInfo', 'useShortcut', 'dateRangeObject'], (result) => {
+        chrome.storage.local.get(['excludedFolders', 'openInNewTab', 'allBookmarks', 'showInfo', 'dateRangeObject'], (result) => {
           let allBookmarks = result.allBookmarks ? result.allBookmarks : []
           let excludedFolders = result.excludedFolders ? result.excludedFolders : []
-          let openInNewTab = result.openInNewTab == 'on' ? true : false
-          let showInfo = result.showInfo == 'off' ? false : true
-          let useShortcut = result.useShortcut == 'on' ? true : false
+          let openInNewTab = typeof result.openInNewTab == 'boolean' ? result.openInNewTab : result.openInNewTab == 'on' ? true : false
+          let showInfo = typeof result.showInfo == 'boolean' ? result.showInfo : result.showInfo == 'off' ? false : true
           let dateRangeObject = result.dateRangeObject ? result.dateRangeObject : {"endMonth" : "", "endYear" : "", "startMonth" : 0, "startYear" : "2008"}
           chrome.storage.local.set({
             "allBookmarks": allBookmarks,
             "excludedFolders": excludedFolders,
             "openInNewTab": openInNewTab,
             "showInfo": showInfo,
-            "useShortcut": useShortcut,
             "dateRangeObject": dateRangeObject
           }, () => {
             chrome.bookmarks.getTree( buildStorageBookmarksArray )
