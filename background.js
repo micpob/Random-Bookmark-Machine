@@ -95,7 +95,6 @@ const openRandomBookmark = () => {
   chrome.storage.local.get('allBookmarks', (result) => {
     
     const allBookmarks = result.allBookmarks
-    //console.log(allBookmarks)
 
     if (allBookmarks.length < 1) {
       noResults()
@@ -218,20 +217,19 @@ chrome.bookmarks.onImportBegan.addListener(() => { })
 chrome.bookmarks.onImportEnded.addListener(() => { chrome.bookmarks.getTree( buildStorageBookmarksArray ) })
 
 chrome.bookmarks.onMoved.addListener((movedBookmarkId, newBookmark) => { 
-  //console.log('newBookmark.url:', newBookmark.url)
-  if (newBookmark.oldParentId === newBookmark.parentId || !newBookmark.url) return
+
+  if (newBookmark.oldParentId === newBookmark.parentId) return
   chrome.storage.local.get({allBookmarks: []}, (result) => {
     const allBookmarksArray = result.allBookmarks
     const targetIndex = allBookmarksArray.findIndex(bookmark => bookmark.id === movedBookmarkId)
+    if (targetIndex >= 0) {
     chrome.bookmarks.getSubTree( newBookmark.parentId, result => {
-      //console.log('result:', result)
       const folderTitle = result[0].title
-      //console.log('newBookmark:', newBookmark)
       allBookmarksArray[targetIndex].parentFolderTitle = folderTitle
       allBookmarksArray[targetIndex].parentFolderId = newBookmark.parentId
-      //console.log('moved bookmark:', allBookmarksArray[targetIndex])
       chrome.storage.local.set({allBookmarks: allBookmarksArray})
     })
+    } 
   })  
 })
 
