@@ -42,8 +42,6 @@ chrome.runtime.onInstalled.addListener((details) => {
 
 })
 
-
-
 const buildStorageBookmarksArray = async (bookmarks) => {
 
   const allBookmarksArray = []
@@ -212,9 +210,13 @@ chrome.bookmarks.onCreated.addListener((newBookmarkId, newBookmark) => {
   })
  })
 
-chrome.bookmarks.onImportBegan.addListener(() => { })
+chrome.bookmarks.onImportBegan.addListener(() => {  })
 
-chrome.bookmarks.onImportEnded.addListener(() => { chrome.bookmarks.getTree( buildStorageBookmarksArray ) })
+chrome.bookmarks.onImportEnded.addListener(() => { 
+  setTimeout(() => {
+    chrome.bookmarks.getTree( buildStorageBookmarksArray ) 
+  }, 2000);
+})
 
 chrome.bookmarks.onMoved.addListener((movedBookmarkId, newBookmark) => { 
 
@@ -223,12 +225,12 @@ chrome.bookmarks.onMoved.addListener((movedBookmarkId, newBookmark) => {
     const allBookmarksArray = result.allBookmarks
     const targetIndex = allBookmarksArray.findIndex(bookmark => bookmark.id === movedBookmarkId)
     if (targetIndex >= 0) {
-    chrome.bookmarks.getSubTree( newBookmark.parentId, result => {
-      const folderTitle = result[0].title
-      allBookmarksArray[targetIndex].parentFolderTitle = folderTitle
-      allBookmarksArray[targetIndex].parentFolderId = newBookmark.parentId
-      chrome.storage.local.set({allBookmarks: allBookmarksArray})
-    })
+      chrome.bookmarks.getSubTree( newBookmark.parentId, result => {
+        const folderTitle = result[0].title
+        allBookmarksArray[targetIndex].parentFolderTitle = folderTitle
+        allBookmarksArray[targetIndex].parentFolderId = newBookmark.parentId
+        chrome.storage.local.set({allBookmarks: allBookmarksArray})
+      })
     } 
   })  
 })
