@@ -30,10 +30,10 @@ h1 {
 }
 
 #show_notifications_container, #use_shortcut_container {
-  margin-left: 150px;
+  margin-left: 85px;
 }
 
-#show_info_label, #open_in_new_tab_label, #use_shortcut_label {
+#show_info_label, #open_in_new_tab_label, #use_shortcut_button, #refresh_bookmarks_list_button  {
   display: block;
   width: 54px;
   padding: 10px;
@@ -61,6 +61,7 @@ h1 {
 
 #date_range_container button:hover {
   cursor: pointer;
+  background-color: rgb(210, 210, 210);
 } 
 
 select {
