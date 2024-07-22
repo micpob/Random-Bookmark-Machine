@@ -12,7 +12,7 @@ The extension's behavior is heavily customizable in the **vintage styled** Optio
 
 <br>
 <div align="center" >
-  <img src="Docs/Screenshots/options_page.png" alt="Random Bookmark Machine screenshot 2" width="640px">
+  <img src="Docs/Screenshots/options_page_new.png" alt="Random Bookmark Machine screenshot 2" width="640px">
 </div>
 <br>
 
@@ -21,7 +21,7 @@ You can choose to:
 - Select only bookmarks created in a specific **range of dates**
 - Open each bookmark in a **new tab** or always in the same tab
 - Show a short **notification** for every bookmark opened. In the notification you will see the date of when you bookmarked the website and the name of the folder where the bookmark is stored
-- Use the **keyboard shortcut** Ctrl + Shift + K to open the bookmarks, instead of the Toolbar button
+- Set a custom **keyboard shortcut** to open the bookmarks.
 
 <br>
 <div align="center" >
