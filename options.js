@@ -1,14 +1,15 @@
 let language = chrome.i18n.getUILanguage()
 language = language.slice(0,2)
 
-language = ['es', 'it', 'fr', 'pt'].includes(language) ? language : 'en'
+language = ['es', 'it', 'fr', 'pt', 'de', 'pl'].includes(language) ? language : 'en'
 
 const monthsLocalizations = {
   en: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
   es: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
   it: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
   fr: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-  pt: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
+  pt: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+  de: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
 }
 
 let months = monthsLocalizations[language]
@@ -243,6 +244,7 @@ const refreshButtonTextLocalizations = {
   it: { processing: 'Processando', done: 'FINITO!' },
   fr: { processing: 'En cours', done: 'FAIT!' },
   pt: { processing: 'Processando', done: 'FEITO!' },
+  de: { processing: 'Verarbeitung', done: 'FERTIG!' },
 }
 let refreshButtonText = refreshButtonTextLocalizations[language]
 

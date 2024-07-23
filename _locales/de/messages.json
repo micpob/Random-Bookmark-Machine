@@ -1,0 +1,56 @@
+{
+  "extension_name": {
+    "message": "Random Bookmark Machine"
+  },
+  "extension_description": {
+    "message": "Entdecken Sie vergessene Lesezeichen mit dieser anpassbaren Zeitmaschine!"
+  },
+  "open_in_new_tab": {
+    "message": "Lesezeichen in neuer<br>Registerkarte öffnen:"
+  },
+  "show_notification": {
+    "message": "Lesezeichen anzeigenInfo-Benachrichtigung:"
+  },
+  "use_shortcut": {
+    "message": "Tastaturkürzel<br>festlegen"
+  },
+  "start_date": {
+    "message": "Startdatum:"
+  },
+  "set_to_start_btn": {
+    "message": "Reset"
+  },
+  "end_date": {
+    "message": "Enddatum:"
+  },
+  "set_to_now_btn": {
+    "message": "Auf jetzt<br>setzen"
+  },
+  "select_from_folders": {
+    "message": "Wählen Sie aus den Ordnern:"
+  },
+  "select_deselect_all_btn": {
+    "message": "Alle abwählen"
+  },
+  "select_all": {
+    "message": "Alle auswählen"
+  },
+  "deselect_all": {
+    "message": "Alle abwählen"
+  },
+  "no_bookmarks_alert": {
+    "message": "Keine Lesezeichen in den ausgewählten Ordnern und im ausgewählten Zeitbereich"
+  },
+  "bookmarked_on_date": {
+    "message": "Gelesen am:"
+  },
+  "saved_in_folder": {
+    "message": "Im Ordner:"
+  },
+  "refresh_bookmarks_list_button": {
+    "message": "Aktualisieren der Lesezeichenliste"
+  },
+  "refresh_button_caption": {
+    "message": "(dies kann bis zu einer Minute dauern)"
+  }
+}
