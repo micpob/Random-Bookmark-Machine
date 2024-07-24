@@ -10,6 +10,7 @@ const monthsLocalizations = {
   fr: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
   pt: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
   de: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+  pl: ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień']
 }
 
 let months = monthsLocalizations[language]
@@ -245,6 +246,7 @@ const refreshButtonTextLocalizations = {
   fr: { processing: 'En cours', done: 'FAIT!' },
   pt: { processing: 'Processando', done: 'FEITO!' },
   de: { processing: 'Verarbeitung', done: 'FERTIG!' },
+  pl: { processing: 'Przetwarzanie', done: 'ZROBIONE!' }
 }
 let refreshButtonText = refreshButtonTextLocalizations[language]
 

@@ -1,0 +1,56 @@
+{
+  "extension_name": {
+    "message": "Random Bookmark Machine"
+  },
+  "extension_description": {
+    "message": "Odkryj zapomniane zakładki dzięki temu wysoce konfigurowalnemu wehikułowi czasu!"
+  },
+  "open_in_new_tab": {
+    "message": "Otwórz zakładki<br>w nowej karcie:"
+  },
+  "show_notification": {
+    "message": "Pokaż powiadomienie<br>o zakładkach:"
+  },
+  "use_shortcut": {
+    "message": "Ustaw skrót<br>klawiaturowy"
+  },
+  "start_date": {
+    "message": "Data startu:"
+  },
+  "set_to_start_btn": {
+    "message": "Reset"
+  },
+  "end_date": {
+    "message": "Data zakończenia:"
+  },
+  "set_to_now_btn": {
+    "message": "Ustaw<br>na teraz"
+  },
+  "select_from_folders": {
+    "message": "Wybór z folderów:"
+  },
+  "select_deselect_all_btn": {
+    "message": "Odznacz wszystko"
+  },
+  "select_all": {
+    "message": "Wybierz wszystko"
+  },
+  "deselect_all": {
+    "message": "Odznacz wszystko"
+  },
+  "no_bookmarks_alert": {
+    "message": "Brak zakładek w wybranych folderach i zakresie czasu"
+  },
+  "bookmarked_on_date": {
+    "message": "Zakładki na::"
+  },
+  "saved_in_folder": {
+    "message": "W folderze:"
+  },
+  "refresh_bookmarks_list_button": {
+    "message": "Odśwież listę zakładek"
+  },
+  "refresh_button_caption": {
+    "message": "(może to potrwać do jednej minuty)"
+  }
+}
