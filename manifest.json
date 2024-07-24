@@ -1,7 +1,7 @@
 {
   "name": "__MSG_extension_name__",
   "short_name": "RndBkMch",
-  "version": "3.0",
+  "version": "3.4",
   "content_security_policy": {
     "extension_pages": "default-src 'self'"
   },
