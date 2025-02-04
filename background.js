@@ -213,9 +213,9 @@ chrome.bookmarks.onCreated.addListener((newBookmarkId, newBookmark) => {
 chrome.bookmarks.onImportBegan.addListener(() => {  })
 
 chrome.bookmarks.onImportEnded.addListener(() => { 
-  setTimeout(() => {
+  /* setTimeout(() => {
     chrome.bookmarks.getTree( buildStorageBookmarksArray ) 
-  }, 2000);
+  }, 2000); */
 })
 
 chrome.bookmarks.onMoved.addListener((movedBookmarkId, newBookmark) => { 
