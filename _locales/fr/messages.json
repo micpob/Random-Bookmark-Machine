@@ -52,5 +52,8 @@
   },
   "refresh_button_caption": {
     "message": "(Peut prendre jusqu'à une minute)"
+  },
+  "context_menu_my_other_extensions": {
+    "message": "★★ Mes autres extensions ★★"
   }
 }

@@ -1,7 +1,7 @@
 {
   "name": "__MSG_extension_name__",
   "short_name": "RndBkMch",
-  "version": "3.4",
+  "version": "3.5",
   "content_security_policy": {
     "extension_pages": "default-src 'self'"
   },
@@ -17,7 +17,7 @@
   "background": {
     "service_worker": "background.js"
   },
-  "permissions": ["storage", "bookmarks", "notifications"],
+  "permissions": ["storage", "bookmarks", "notifications", "contextMenus"],
   "options_ui": {
     "page": "options.html",
     "open_in_tab": true
