@@ -31,12 +31,12 @@ You can choose to:
 
 &nbsp;  
 
-## Stack used:
+### Stack used:
 
 HTML, CSS, Javascript (Extensions APIs)
 
 &nbsp;
   
-### Chrome Web Store link: 
+### Install here: 
 
-https://chrome.google.com/webstore/detail/random-bookmark-machine/jpofhhlmbncfdodogngdidhkecjigaab
+<a href="https://chrome.google.com/webstore/detail/random-bookmark-machine/jpofhhlmbncfdodogngdidhkecjigaab"><img src="Docs/Screenshots/chrome-web-store-logo-large.png" alt="Chrome web store button" width="250px" ></a>
