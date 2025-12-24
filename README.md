@@ -1,6 +1,6 @@
 # Random Bookmark Machine
 
-This Chrome extension adds a button to your Toolbar that, every time is clicked, opens **a random website** from your bookmarks list.
+This Chrome extension opens **a random URL** from your bookmarks list every time the extension button is clicked.
 
 <br>
 <div align="center" >
@@ -8,7 +8,7 @@ This Chrome extension adds a button to your Toolbar that, every time is clicked,
 </div>
 <br>
 
-The extension's behavior is heavily customizable in the **vintage styled** Options page:
+The extension's behavior is heavily customizable in the **vintage-styled** Options page:
 
 <br>
 <div align="center" >
@@ -21,7 +21,7 @@ You can choose to:
 - Select only bookmarks created in a specific **range of dates**
 - Open each bookmark in a **new tab** or always in the same tab
 - Show a short **notification** for every bookmark opened. In the notification you will see the date of when you bookmarked the website and the name of the folder where the bookmark is stored
-- Set a custom **keyboard shortcut** to open the bookmarks.
+- Set a custom **keyboard shortcut** to activate the extension instead of using the toolbar button
 
 <br>
 <div align="center" >
